@@ -1,0 +1,10 @@
+@import "tailwindcss";
+@source "../losta_masta_spesialis_pembuatan_website.tsx";
+
+:root {
+  font-family: 'Kanit', sans-serif;
+  color: #D7E2EA;
+  background: #0C0C0C;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
