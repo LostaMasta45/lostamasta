@@ -1,5 +1,15 @@
 import { createRoot } from 'react-dom/client';
+import { lazy, Suspense } from 'react';
 import App from '../losta_masta_spesialis_pembuatan_website';
 import './styles.css';
 
-createRoot(document.getElementById('root')!).render(<App />);
+const pathname = window.location.pathname.replace(/\/+$/, '');
+const Page = pathname.startsWith('/konsep/')
+  ? lazy(() => import('./concept-demo'))
+  : pathname === '/portofolio'
+  ? lazy(() => import('./portofolio-page'))
+  : pathname === '/baru' ? lazy(() => import('./baru-page')) : App;
+
+createRoot(document.getElementById('root')!).render(
+  <Suspense fallback={null}><Page /></Suspense>,
+);

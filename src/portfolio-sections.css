@@ -1,0 +1,138 @@
+.pf-homepages, .pf-about-me, .pf-reel { --pf-line: rgb(217 204 231 / 17%); --pf-lilac: #c9afdD; background: #0c0c0c; color: #e8e1ed; scroll-margin-top: 20px; }
+.pf-chapter { display: flex; justify-content: space-between; align-items: center; gap: 20px; padding-block: 22px; border-top: 1px solid var(--pf-line); color: #928798; font-size: 10px; letter-spacing: .1em; }
+.pf-chapter a { display: inline-flex; align-items: center; gap: 10px; letter-spacing: 0; min-height: 30px; }
+.pf-kicker { font-size: 11px; color: #bca5cc; letter-spacing: .04em; }
+.pf-homepages h2, .pf-about-me h2, .pf-reel h2 { font-size: clamp(44px, 6.2vw, 94px); line-height: 1.04; letter-spacing: -.055em; font-weight: 500; }
+.pf-homepages h2 em, .pf-about-me h2 em, .pf-reel h2 em { font-family: Georgia, serif; font-weight: 400; color: var(--pf-lilac); letter-spacing: -.055em; }
+.pf-homepages { padding: 0 var(--page-gutter) clamp(80px, 9vw, 140px); }
+.pf-homepages-heading { display: flex; justify-content: space-between; align-items: end; gap: 35px; padding-block: 55px 60px; }
+.pf-homepages-heading h2 { margin-top: 20px; }
+.pf-homepages-heading > div:last-child > p { font-size: 14px; line-height: 1.8; color: #a69cab; font-weight: 300; }
+.pf-homepages-heading > div:last-child > span { display: flex; align-items: center; gap: 9px; font-size: 11px; color: #c6aed7; margin-top: 25px; }
+.pf-homepage-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 65px 30px; }
+.pf-homepage-card { min-width: 0; }
+.pf-browser { border: 1px solid #b8a6c02a; border-radius: 13px; overflow: hidden; background: #1b171f; }
+.pf-browser-bar { display: flex; align-items: center; justify-content: space-between; gap: 15px; height: 49px; padding-inline: 17px 10px; color: #aaa0b1; font-size: 10px; }
+.pf-browser-dots { display: flex; gap: 5px; width: 42px; flex-shrink: 0; }
+.pf-browser-dots i { width: 6px; height: 6px; border-radius: 50%; background: #65596d; }
+.pf-browser-bar > a { display: grid; place-items: center; width: 40px; height: 44px; color: #d3bce4; }
+.pf-homepage-scroll { height: clamp(260px, 31vw, 490px); overflow: auto; overscroll-behavior: contain; scrollbar-width: thin; scrollbar-color: #9b83ac #1b171f; background: #242128; }
+.pf-homepage-scroll:focus-visible { outline-offset: -4px; }
+.pf-homepage-scroll > img { display: block; width: 100%; height: auto; }
+.pf-browser-foot { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 36px; padding: 9px 16px; font-size: 8px; color: #94859f; }
+.pf-browser-foot > span:first-child { display: inline-flex; gap: 7px; align-items: center; letter-spacing: .06em; }
+.pf-homepage-caption { display: flex; justify-content: space-between; align-items: center; gap: 20px; padding-top: 21px; }
+.pf-work-index { color: #98889f; font-size: 9px; letter-spacing: .05em; }
+.pf-homepage-caption h3 { font-size: clamp(28px, 3.1vw, 46px); font-weight: 400; letter-spacing: -.04em; line-height: 1.3; margin-top: 5px; }
+.pf-work-detail { display: flex; align-items: center; gap: 18px; padding: 10px 0 10px 12px; border: 0; background: transparent; font-size: 11px; min-height: 44px; color: #c8b2d8; }
+.pf-homepage-description { color: #9c91a3; font-size: 13px; font-weight: 300; line-height: 1.8; max-width: 470px; margin-top: 9px; }
+.pf-work-note { font-size: 11px; color: #92839a; line-height: 1.8; border-top: 1px solid var(--pf-line); padding-top: 25px; margin-top: 50px; }
+.pf-about-me { padding: 0 var(--page-gutter) 55px; background: #111013; }
+.pf-about-layout { display: grid; grid-template-columns: .95fr 1.05fr; gap: clamp(40px, 8vw, 125px); align-items: center; padding-block: 65px 75px; }
+.pf-about-portrait { position: relative; isolation: isolate; background: #c8b6d5; color: #302337; border-radius: 8px; aspect-ratio: .82; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; }
+.pf-portrait-top { position: relative; z-index: 2; display: flex; justify-content: space-between; align-items: center; gap: 15px; padding: 25px; font-size: 9px; letter-spacing: .06em; }
+.pf-portrait-top > span { display: flex; align-items: center; gap: 7px; }
+.pf-about-dot { width: 5px; height: 5px; background: #5c4669; border-radius: 50%; }
+.pf-portrait-word { position: absolute; top: 15%; left: 5%; font: italic clamp(85px, 13vw, 190px)/1 Georgia, serif; letter-spacing: -.07em; color: #f2e7fa; }
+.pf-about-portrait > img { position: absolute; top: 20%; left: -7%; width: 114%; max-width: none; height: auto; transform: rotate(-8deg); }
+.pf-portrait-bottom { position: relative; z-index: 2; display: flex; justify-content: space-between; align-items: end; gap: 15px; padding: 40px 25px 25px; margin-top: auto; background: linear-gradient(transparent, #c8b6d5 60%); }
+.pf-portrait-bottom > div { font-size: 20px; font-weight: 500; letter-spacing: -.03em; }
+.pf-portrait-bottom > div > span { display: block; font-size: 10px; font-weight: 300; letter-spacing: 0; margin-top: 3px; }
+.pf-portrait-bottom > span { display: inline-flex; gap: 5px; align-items: center; font-size: 9px; white-space: nowrap; }
+.pf-about-copy h2 { margin-block: 22px 30px; font-size: clamp(43px, 5.7vw, 85px); }
+.pf-about-copy > p:not(.pf-kicker) { color: #a59aaa; font-size: 14px; line-height: 1.85; font-weight: 300; margin-top: 18px; max-width: 500px; }
+.pf-about-copy > .pf-about-lead:not(.pf-kicker) { color: #e1d3e9; font-size: 21px; line-height: 1.5; font-weight: 400; margin-bottom: 25px; }
+.pf-about-method { display: grid; gap: 13px; margin-top: 28px; padding-top: 23px; border-top: 1px solid var(--pf-line); }
+.pf-about-method > span { display: flex; gap: 22px; font-size: 12px; color: #c0aecb; }
+.pf-about-method b { font-weight: 300; color: #7c698a; font-size: 10px; padding-top: 2px; }
+.pf-about-cta { display: inline-flex; align-items: center; justify-content: space-between; gap: 45px; min-height: 48px; padding: 13px 20px; border-radius: 30px; background: #cbb1df; color: #24192c; font-size: 12px; margin-top: 30px; }
+.pf-about-signoff { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding-top: 25px; border-top: 1px solid var(--pf-line); font-size: 10px; color: #93839d; }
+.pf-about-signoff > span:first-child { display: inline-flex; align-items: center; gap: 12px; color: #b5a5bf; font-size: 12px; }
+.pf-reel { padding-inline: var(--page-gutter); }
+.pf-reel[data-pinned="true"] { height: 340vh; }
+.pf-reel-stage { padding-bottom: 55px; }
+.pf-reel[data-pinned="true"] .pf-reel-stage { position: sticky; top: 0; height: 100svh; display: flex; flex-direction: column; justify-content: center; padding-bottom: 25px; }
+.pf-reel-heading { display: flex; justify-content: space-between; align-items: end; gap: 30px; padding-block: 30px 35px; }
+.pf-reel-heading h2 { font-size: clamp(40px, 4.7vw, 72px); margin-top: 13px; }
+.pf-reel-heading > div:last-child { max-width: 270px; }
+.pf-reel-heading > div:last-child > p { font-size: 12px; font-weight: 300; color: #9c8da5; line-height: 1.7; }
+.pf-reel-controls { display: flex; gap: 9px; margin-top: 15px; }
+.pf-reel-controls > button { display: grid; place-items: center; height: 44px; width: 44px; background: transparent; border: 1px solid #b29ac64a; border-radius: 50%; color: #c7b2d8; }
+.pf-reel-rail { overflow-x: auto; overflow-y: hidden; scrollbar-width: thin; scrollbar-color: #7f668f transparent; scroll-snap-type: x mandatory; padding-bottom: 15px; }
+.pf-reel[data-pinned="true"] .pf-reel-rail { overflow: clip; }
+.pf-reel-track { display: flex; gap: 28px; width: max-content; }
+.pf-reel-card { width: min(64vw, 900px); flex: 0 0 auto; scroll-snap-align: start; }
+.pf-reel-preview { display: block; position: relative; width: 100%; height: clamp(260px, 39vh, 470px); overflow: hidden; border: 1px solid #b8a6c02a; border-radius: 10px; background: #232025; padding: 0; text-align: left; }
+.pf-reel-preview > img { display: block; width: 100%; height: auto; }
+.pf-reel-preview > span { position: absolute; bottom: 20px; right: 20px; height: 52px; width: 52px; display: grid; place-items: center; border-radius: 50%; background: #1c1324ed; color: #dec4ef; border: 1px solid #d3b5e74d; }
+.pf-reel-caption { display: flex; justify-content: space-between; align-items: center; gap: 20px; padding-top: 15px; }
+.pf-reel-caption > div > span { font-size: 9px; color: #a18eac; }
+.pf-reel-caption h3 { font-size: 30px; font-weight: 400; letter-spacing: -.04em; }
+.pf-reel-caption > a { display: inline-flex; align-items: center; gap: 15px; font-size: 11px; min-height: 44px; color: #c4abd6; }
+.pf-reel-bottom { display: flex; align-items: center; gap: 25px; justify-content: space-between; padding-top: 25px; font-size: 8px; letter-spacing: .08em; color: #9e8ba9; }
+.pf-reel-progress { flex: 1; height: 2px; background: #342a3b; max-width: 350px; overflow: hidden; }
+.pf-reel-progress > div { height: 100%; background: #c7a3e1; transform-origin: left; }
+@media (hover: hover) and (pointer: fine) {
+  .pf-work-detail:hover, .pf-browser-bar > a:hover, .pf-reel-caption > a:hover { color: #f0dcff; }
+  .pf-reel-controls > button:hover { background: #34243f; }
+}
+@media (max-width: 899px) {
+  .pf-homepages-heading { align-items: start; padding-block: 40px; }
+  .pf-homepages-heading > div:last-child > p { font-size: 12px; }
+  .pf-homepage-grid { gap: 45px 22px; }
+  .pf-homepage-scroll { height: 300px; }
+  .pf-work-detail > span { display: none; }
+  .pf-about-layout { gap: 30px; padding-block: 45px; }
+  .pf-portrait-top { padding: 20px; font-size: 7px; }
+  .pf-portrait-bottom { padding: 35px 20px 20px; flex-wrap: wrap; }
+  .pf-portrait-bottom > div { font-size: 18px; }
+  .pf-about-copy > p:not(.pf-kicker) { font-size: 12px; }
+  .pf-about-copy > .pf-about-lead:not(.pf-kicker) { font-size: 18px; }
+  .pf-about-signoff > span:last-child { display: none; }
+  .pf-reel-heading { padding-top: 45px; }
+  .pf-reel-card { width: min(80vw, 680px); }
+}
+@media (max-width: 639px) {
+  .pf-chapter { font-size: 8px; gap: 15px; line-height: 1.6; }
+  .pf-chapter > span:last-child { text-align: right; max-width: 110px; }
+  .pf-homepages-heading { display: block; }
+  .pf-homepages h2 { font-size: clamp(42px, 10.5vw, 66px); }
+  .pf-homepages-heading > div:last-child { margin-top: 25px; }
+  .pf-homepages-heading > div:last-child > span { margin-top: 16px; }
+  .pf-homepage-grid { grid-template-columns: 1fr; gap: 40px; }
+  .pf-homepage-scroll { height: clamp(275px, 86vw, 460px); }
+  .pf-browser-bar { height: 44px; padding-left: 13px; }
+  .pf-browser-foot { font-size: 7px; padding-inline: 12px; }
+  .pf-browser-foot > span:first-child { letter-spacing: 0; gap: 5px; }
+  .pf-homepage-caption { padding-top: 16px; }
+  .pf-homepage-caption h3 { font-size: 34px; }
+  .pf-homepage-description { font-size: 12px; }
+  .pf-work-detail > span { display: inline; font-size: 10px; }
+  .pf-work-note { font-size: 10px; margin-top: 35px; }
+  .pf-about-me { padding-bottom: 35px; }
+  .pf-about-layout { grid-template-columns: 1fr; gap: 35px; padding-block: 35px; }
+  .pf-about-portrait { aspect-ratio: .95; max-width: 440px; width: 100%; margin-inline: auto; }
+  .pf-portrait-word { font-size: 36vw; top: 12%; }
+  .pf-about-portrait > img { top: 12%; }
+  .pf-portrait-top { font-size: 8px; }
+  .pf-portrait-bottom { flex-wrap: nowrap; }
+  .pf-about-copy h2 { font-size: clamp(50px, 13vw, 75px); margin-block: 20px 25px; }
+  .pf-about-copy > p:not(.pf-kicker) { font-size: 13px; }
+  .pf-about-copy > .pf-about-lead:not(.pf-kicker) { font-size: 21px; }
+  .pf-about-method { margin-top: 25px; }
+  .pf-about-signoff > span:first-child { font-size: 10px; }
+  .pf-reel-heading { display: block; padding-block: 35px 25px; }
+  .pf-reel-heading h2 { font-size: clamp(37px, 10vw, 58px); }
+  .pf-reel-heading > div:last-child { max-width: none; display: flex; justify-content: space-between; align-items: center; gap: 20px; margin-top: 20px; }
+  .pf-reel-heading > div:last-child > p { max-width: 190px; font-size: 11px; }
+  .pf-reel-controls { margin-top: 0; flex-shrink: 0; }
+  .pf-reel-track { gap: 18px; }
+  .pf-reel-card { width: calc(100vw - 2 * var(--page-gutter) - 15px); }
+  .pf-reel-preview { height: 260px; }
+  .pf-reel-preview > span { width: 44px; height: 44px; bottom: 15px; right: 15px; }
+  .pf-reel-caption h3 { font-size: 28px; }
+  .pf-reel-caption > div > span { font-size: 8px; }
+  .pf-reel-caption > a { font-size: 10px; gap: 8px; }
+  .pf-reel-bottom { gap: 14px; font-size: 7px; line-height: 1.7; }
+  .pf-reel-bottom > span { max-width: 100px; }
+}

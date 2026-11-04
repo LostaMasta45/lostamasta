@@ -4,8 +4,44 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#0C0C0C" />
-    <meta name="description" content="Losta Masta — spesialis pembuatan website, landing page, toko online, company profile, dan aplikasi web untuk bisnis Anda." />
-    <title>LOSTA MASTA — Jasa Pembuatan Website &amp; Web Developer</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script>
+      // Preload only the local character used by the requested page.
+      {
+        const pathname = location.pathname.replace(/\/+$/, '');
+        const portraitPreview = ['/baru', '/portofolio'].includes(pathname);
+        const heroPreload = document.createElement('link');
+        heroPreload.rel = 'preload';
+        heroPreload.as = 'image';
+        heroPreload.fetchPriority = 'high';
+        heroPreload.href = pathname === '/baru'
+          ? '/media/living-portrait/coba/rest.webp'
+          : portraitPreview
+          ? '/media/living-portrait/20261031_040619_2f6f349e-a4a7-40db-8e9b-03b6acd8b99a.webp'
+          : '/media/hero-800.webp';
+        if (!portraitPreview) {
+          heroPreload.imageSrcset = '/media/hero-480.webp 480w, /media/hero-800.webp 800w';
+          heroPreload.imageSizes = '(min-width: 1024px) 500px, (min-width: 768px) 420px, (min-width: 640px) 340px, 220px';
+        }
+        document.head.append(heroPreload);
+      }
+    </script>
+    <link rel="preload" as="font" href="/media/kanit-latin-900.woff2" type="font/woff2" crossorigin />
+    <meta name="description" content="Jelajahi konsep website berkarakter dari Losta Masta: landing page, company profile, e-commerce, dan dashboard. Diskusikan kebutuhan website Anda langsung via WhatsApp." />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="id_ID" />
+    <meta property="og:site_name" content="Losta Masta" />
+    <meta property="og:title" content="Losta Masta — Website dengan Karakter" />
+    <meta property="og:description" content="Desain berkarakter. Interaksi terarah. Jelajahi konsep website untuk bisnis Anda dan mulai percakapan langsung via WhatsApp." />
+    <meta property="og:image" content="/media/losta-masta-share.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Losta Masta — Web Design &amp; Development. Desain berkarakter, interaksi terarah." />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Losta Masta — Website dengan Karakter" />
+    <meta name="twitter:description" content="Jelajahi konsep website berkarakter dan diskusikan kebutuhan bisnis Anda langsung via WhatsApp." />
+    <meta name="twitter:image" content="/media/losta-masta-share.jpg" />
+    <title>LOSTA MASTA — Website dengan Karakter</title>
   </head>
   <body>
     <div id="root"></div>

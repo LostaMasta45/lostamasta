@@ -1,0 +1,44 @@
+{
+  "source": "coba/",
+  "description": "User-supplied hijab character: master, horizontal gaze, wink, puffed cheeks, smile, idea and skeptical glance.",
+  "images": {
+    "rest": {
+      "source": "coba/rest.png",
+      "file": "rest.webp"
+    },
+    "left": {
+      "source": "coba/left.png",
+      "file": "left.webp"
+    },
+    "right": {
+      "source": "coba/right.png",
+      "file": "right.webp"
+    },
+    "01_kedip_jahil": {
+      "source": "coba/01_kedip_jahil.png",
+      "file": "01_kedip_jahil.webp"
+    },
+    "02_pipi_menggembung": {
+      "source": "coba/02_pipi_menggembung.png",
+      "file": "02_pipi_menggembung.webp"
+    },
+    "03_senyum_hangat": {
+      "source": "coba/03_senyum_hangat.png",
+      "file": "03_senyum_hangat.webp"
+    },
+    "04_dapat_ide": {
+      "source": "coba/04_dapat_ide.png",
+      "file": "04_dapat_ide.webp"
+    },
+    "05_melirik_curiga": {
+      "source": "coba/05_melirik_curiga.png",
+      "file": "05_melirik_curiga.webp"
+    }
+  },
+  "export": {
+    "max_size": 960,
+    "format": "WebP",
+    "quality": 90,
+    "alpha": true
+  }
+}
