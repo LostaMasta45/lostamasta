@@ -6,3 +6,5 @@ dist/
 !.env.example
 *.log
 /losta-masta-site.tar.gz
+__pycache__/
+*.py[cod]
