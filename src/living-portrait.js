@@ -1,6 +1,8 @@
 // Adapted from promptheadline.md section 6. Original expressions and fixed-step sheet physics.
 // Scoped listeners, local images and lifecycle cleanup support the isolated /baru React route.
-export function initLivingPortrait(root, { isPaused = () => false, images } = {}) {
+import { createPortraitSprites } from './portrait-sprites';
+
+export function initLivingPortrait(root, { isPaused = () => false, images, portrait } = {}) {
     const controller = new AbortController();
     let disposed = false, frameId = 0, lastPaused = null;
     const timers = new Set();
@@ -27,16 +29,18 @@ export function initLivingPortrait(root, { isPaused = () => false, images } = {}
     const makeBuffer = () => { const b = gl.createBuffer(); buffers.push(b); return b; };
     const shaders = [];
     const fallback = root.querySelector('#faceFallback');
+    const sprites = portrait ? createPortraitSprites(gl, portrait.animations, () => disposed) : null;
 
     const VS = `attribute vec2 a, d; attribute float s; varying vec2 vUv; varying float vS;
       uniform vec2 lean; uniform float overS;
       void main(){ vUv = a; vS = s; vec2 p = a + d + lean; gl_Position = vec4(vec2(p.x-.5, .5-p.y)*2./overS, 0., 1.); }`;
     const FS = `precision highp float; varying vec2 vUv; varying float vS;
       uniform sampler2D faceA, faceB;
+      uniform vec4 rectA, rectB;
       uniform float fade;
       void main(){
         if(vUv.x<0.||vUv.y<0.||vUv.x>1.||vUv.y>1.){ gl_FragColor = vec4(0.); return; }
-        vec4 c = mix(texture2D(faceA,vUv), texture2D(faceB,vUv), fade);
+        vec4 c = mix(texture2D(faceA,rectA.xy+vUv*rectA.zw), texture2D(faceB,rectB.xy+vUv*rectB.zw), fade);
         if(c.a<.004){ gl_FragColor = vec4(0.); return; }
         gl_FragColor = vec4(c.rgb*vS, c.a);
       }`;
@@ -45,7 +49,7 @@ export function initLivingPortrait(root, { isPaused = () => false, images } = {}
     gl.attachShader(pr, sh(gl.VERTEX_SHADER, VS)); gl.attachShader(pr, sh(gl.FRAGMENT_SHADER, FS));
     gl.linkProgram(pr); gl.useProgram(pr);
     const U = {over_: gl.getUniformLocation(pr, 'overS')};
-    for (const n of ['lean', 'faceA', 'faceB', 'fade']) U[n] = gl.getUniformLocation(pr, n);
+    for (const n of ['lean', 'faceA', 'faceB', 'fade', 'rectA', 'rectB']) U[n] = gl.getUniformLocation(pr, n);
     gl.uniform1f(U.over_, OVER);
     gl.uniform1i(U.faceA, 0); gl.uniform1i(U.faceB, 1); 
 
@@ -124,7 +128,7 @@ export function initLivingPortrait(root, { isPaused = () => false, images } = {}
     const param = () => { gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR); };
     gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL, true);
     const load = async name => {
-      const src = images ? images[name] : url(IDS[name]);
+      const src = images ? images[name] : portrait ? portrait.stills[name] : url(IDS[name]);
       if (!src) return null;
       const image = new Image();
       image.decoding = 'async';
@@ -160,13 +164,14 @@ export function initLivingPortrait(root, { isPaused = () => false, images } = {}
       fly: 'fly', tug: 'tug', hair: 'hair'
     };
     const ROTATION = images ? (images.smug ? ['curious', 'shifty'] : ['shifty']) : ['yawn', 'shifty', 'gum', 'fly', 'flirt', 'roll', 'sneeze', 'hair', 'tug', 'cross', 'whistle', 'doze', 'cheeky', 'wow', 'sad'];
+    const idleRotation = portrait ? portrait.rotation : ROTATION;
     // what each part of her answers to
     const ZONES = images ? {
       hover: {eyeL: 'winkl', eyeR: 'winkl', brow: 'raised', nose: 'smug', mouth: 'grin'},
       tap: {brow: 'raised', eyeL: 'winkl', eyeR: 'winkl', nose: 'smug', mouth: 'grin', cheek: 'puff', chin: 'grin'}
     } : {
-      hover: {eyeL: 'winkl', eyeR: 'winkr', nose: 'cross', mouth: 'kiss'},
-      tap: {brow: 'angry', eyeL: 'ouch', eyeR: 'ouch', nose: 'act:sneeze', mouth: 'tongue', cheek: 'puff', chin: 'laugh'}
+      hover: {eyeL: 'winkl', eyeR: 'winkr', nose: portrait ? 'smug' : 'cross', mouth: 'kiss'},
+      tap: {brow: 'angry', eyeL: 'ouch', eyeR: 'ouch', nose: 'act:sneeze', mouth: portrait ? 'act:cheeky' : 'tongue', cheek: 'puff', chin: 'laugh'}
     };
     const zoneAt = (u, v) => {
       const a = (u - .505) / .225, b = (v - .485) / .33;
@@ -185,6 +190,7 @@ export function initLivingPortrait(root, { isPaused = () => false, images } = {}
     let lastInput = -1e9, awake = false, pressed = false, downAt = 0, downU = 0, downV = 0, lastX = null, lastY = null, speed = 0, shake = 0;
     let moodFace = null, moodUntil = 0, pulls = [], lookAt = null;
     let act = null, actI = 0, actT = 0, rotation = [], nextIdle = 30000;
+    let actRequest = 0;
     let faceA = 'rest', faceB = 'rest', fadeT = 0, fadeMs = 1;
     let logical = 'rest', logicalMs = 70, eyeNow = 'rest', eyeNowMs = 40;
     let nextBlink = 0, blinkStep = -1, blinkT = 0;
@@ -194,26 +200,45 @@ export function initLivingPortrait(root, { isPaused = () => false, images } = {}
 
     const fileOf = cell => images
       ? cell === 'w' ? 'left' : cell === 'e' ? 'right' : 'rest'
-      : cell === 'rest' ? 'rest' : EYEFILE[cell];
+      : cell === 'rest' ? 'rest' : portrait && cell === 'nw' ? 'nw' : EYEFILE[cell];
     const setFace = (n, ms) => { logical = images && !images[n] ? 'rest' : n; logicalMs = ms; };
     const setEye = (cell, ms) => { if (tex[fileOf(cell)]) { eyeNow = cell; eyeNowMs = ms; } };
     // one picture on screen at a time, always
     function show(n, ms, now) {
       if (!tex[n] || n === faceB) return;
-      faceA = (now - fadeT) / fadeMs > .5 ? faceB : faceA; faceB = n; fadeT = now; fadeMs = Math.min(70, Math.max(1, ms));
+      // The hijab images already contain complete eyes and glasses. Blending
+      // different gaze pictures draws two pupils at once, so swap whole frames.
+      faceA = portrait ? n : (now - fadeT) / fadeMs > .5 ? faceB : faceA;
+      faceB = n; fadeT = now; fadeMs = portrait ? 0 : Math.min(70, Math.max(1, ms));
+      sprites?.begin(n, now);
       root.dataset.portraitFace = n;
     }
     function compose(now) {
       if (logical !== 'rest') show(logical, logicalMs, now);
-      else if (!images && hairI >= 0) show(HAIRS[hairI], 70, now);   // no gaze pictures exist in colour, so she faces front
+      else if (!images && !portrait && hairI >= 0) show(HAIRS[hairI], 70, now);
       else show(fileOf(eyeNow), eyeNowMs, now);
     }
     const ringFor = (dx, dy) => images
       ? dx < -.13 ? 'w' : dx > .13 ? 'e' : 'rest'
       : RING[Math.round(((Math.atan2(-dy, dx) + Math.PI * 2) % (Math.PI * 2)) / (Math.PI / 8)) % 16];
 
-    function startAct(name, now) {
+    async function startAct(name, now) {
       endAct();
+      if (portrait) {
+        const clip = portrait.animations[name];
+        if (!clip) return;
+        const request = actRequest;
+        await sprites.ready(name);
+        if (disposed || request !== actRequest || isPaused()) return;
+        if (!tex[name]) {
+          const image = await load(name);
+          if (disposed || request !== actRequest || isPaused()) return;
+          if (image) upload(name, image);
+        }
+        act = [[name, 70, clip.duration]];
+        actI = -1; actT = performance.now(); sprites.begin(name, actT); advance(actT);
+        return;
+      }
       const gaze = { 'look-left': 'w', 'look-center': 'rest', 'look-right': 'e' }[name];
       const a = images && gaze ? [[`eye:${gaze}`, 70, 1600]]
         : images && images[name] ? [[name, 70, name === 'winkl' ? 650 : 1600]] : ACTS[name];
@@ -221,6 +246,7 @@ export function initLivingPortrait(root, { isPaused = () => false, images } = {}
       actI = -1; actT = now; advance(now);
     }
     function endAct() {
+      actRequest++;
       act = null; wantEyes = null; wantLean = [0, 0]; handGrip = false; fly.style.opacity = 0; hand.style.opacity = 0; lookAt = null;
       if (handHeld) { handHeld = false; brush = null; pullNow[0] = pullNow[1] = 0; }
     }
@@ -306,14 +332,18 @@ export function initLivingPortrait(root, { isPaused = () => false, images } = {}
       }
       pulls = pulls.filter(t => now - t < 14000);
       if (L < .03 && held < 380) {             // a tap
-        if (z === 'hair') hairI = hairI + 1 >= HAIRS.length ? -1 : hairI + 1;
-        else { const r = ZONES.tap[z]; if (r.startsWith('act:')) startAct(r.slice(4), now); else { moodFace = r; moodUntil = now + 1100; } poke(downU, downV, 0, .5, .06); }
+        if (z === 'hair') {
+          if (portrait) startAct('hijab', now);
+          else hairI = hairI + 1 >= HAIRS.length ? -1 : hairI + 1;
+        }
+        else { const r = ZONES.tap[z]; if (r.startsWith('act:')) startAct(r.slice(4), now); else if (portrait) startAct(r, now); else { moodFace = r; moodUntil = now + 1100; } poke(downU, downV, 0, .5, .06); }
         return;
       }
       pulls.push(now);
       const n = pulls.length;
       moodFace = n >= 8 ? 'cry' : n >= 5 ? 'angry' : L > .22 ? 'dizzy' : L > .1 ? 'scrunch' : 'deadpan';
       moodUntil = now + (n >= 5 ? 2600 : 700 + L * 2800);
+      if (portrait) { const reaction = n >= 8 ? 'sad' : moodFace; moodFace = null; startAct(reaction, now); }
     }
     const cancelPull = () => { pressed = false; brush = null; zone = null; wrap.style.cursor = ''; };
     listen(window, 'pointerup', release);
@@ -322,10 +352,10 @@ export function initLivingPortrait(root, { isPaused = () => false, images } = {}
     listen(window, 'keydown', () => { if (!visible || isPaused()) return; wake(performance.now()); endAct(); });
     listen(window, 'pointerleave', () => { zone = null; });
     root.querySelectorAll('.contact-btn').forEach(b => {
-      listen(b, 'pointerenter', () => { if (isPaused()) return; wake(performance.now()); endAct(); moodFace = images ? 'grin' : 'hearts'; moodUntil = performance.now() + 1e7; });
+      listen(b, 'pointerenter', () => { if (isPaused()) return; wake(performance.now()); endAct(); moodFace = images || portrait ? 'grin' : 'hearts'; moodUntil = performance.now() + 1e7; });
       listen(b, 'pointerleave', () => { if (isPaused()) return; moodFace = 'grin'; moodUntil = performance.now() + 700; });
     });
-    if (images) root.querySelectorAll('a[href="#projects"]').forEach(b => {
+    if (images || portrait) root.querySelectorAll('a[href="#projects"]').forEach(b => {
       listen(b, 'pointerenter', () => { if (isPaused()) return; wake(performance.now()); endAct(); moodFace = 'raised'; moodUntil = performance.now() + 1e7; });
       listen(b, 'pointerleave', () => { if (isPaused()) return; moodFace = null; });
     });
@@ -355,7 +385,7 @@ export function initLivingPortrait(root, { isPaused = () => false, images } = {}
       // acts when the page goes quiet
       if (act) { if (now - actT > act[actI][2]) advance(now); }
       else if (!isPaused() && !pressed && tStart && now - Math.max(lastInput, tStart) > nextIdle) {
-        if (!rotation.length) rotation = [...ROTATION];
+        if (!rotation.length) rotation = [...idleRotation];
         startAct(rotation.shift(), now); lastInput = now; nextIdle = 30000 + Math.random() * 15000;
         if (!awake) wake(now);
       }
@@ -427,11 +457,18 @@ export function initLivingPortrait(root, { isPaused = () => false, images } = {}
       gl.bindBuffer(gl.ARRAY_BUFFER, dynBuf); gl.bufferSubData(gl.ARRAY_BUFFER, 0, dyn);
 
       gl.clear(gl.COLOR_BUFFER_BIT);
-      gl.activeTexture(gl.TEXTURE0); gl.bindTexture(gl.TEXTURE_2D, tex[faceA] || tex.rest);
-      gl.activeTexture(gl.TEXTURE1); gl.bindTexture(gl.TEXTURE_2D, tex[faceB] || tex.rest);
-      gl.uniform1f(U.fade, Math.min(1, (now - fadeT) / fadeMs));
+      sprites?.beginFrame();
+      const fade = fadeMs === 0 ? 1 : Math.min(1, (now - fadeT) / fadeMs);
+      const animationB = sprites?.frame(faceB, now);
+      const animationA = fade < 1 ? sprites?.frame(faceA, now) : animationB;
+      gl.activeTexture(gl.TEXTURE0); gl.bindTexture(gl.TEXTURE_2D, animationA?.texture || tex[faceA] || tex.rest);
+      gl.activeTexture(gl.TEXTURE1); gl.bindTexture(gl.TEXTURE_2D, animationB?.texture || tex[faceB] || tex.rest);
+      gl.uniform4fv(U.rectA, animationA?.rect || [0, 0, 1, 1]);
+      gl.uniform4fv(U.rectB, animationB?.rect || [0, 0, 1, 1]);
+      gl.uniform1f(U.fade, fade);
       gl.uniform2f(U.lean, leanX, leanY);
       gl.drawElements(gl.TRIANGLES, idx.length, gl.UNSIGNED_SHORT, 0);
+      sprites?.trim();
     }
 
     (async () => {
@@ -444,6 +481,16 @@ export function initLivingPortrait(root, { isPaused = () => false, images } = {}
       root.dataset.portrait = 'ready';
       ready = true; tStart = performance.now(); frameId = requestAnimationFrame(frame);
       const take = async n => { if (disposed) return; const img = await load(n); if (img && !disposed) upload(n, img); }; 
+      if (portrait) {
+        const interactive = [...new Set([...Object.values(EYEFILE), 'nw', ...Object.values(ZONES.hover),
+          ...Object.values(ZONES.tap).filter(name => !name.startsWith('act:')),
+          'shock', 'ouch', 'scared', 'scrunch', 'dizzy', 'cry', 'grin', 'raised', 'wind', 'sick', 'deadpan'])];
+        let next = 0;
+        await Promise.all(Array.from({ length: 3 }, async () => {
+          while (!disposed && next < interactive.length) await take(interactive[next++]);
+        }));
+        return;
+      }
       if (images) {
         await Promise.all(Object.keys(images).filter(name => name !== 'rest').map(take));
         return;
@@ -480,11 +527,19 @@ export function initLivingPortrait(root, { isPaused = () => false, images } = {}
         wake(performance.now()); moodFace = null; startAct(name, performance.now());
       });
     });
+    const posePicker = root.querySelector('[data-portrait-picker]');
+    if (posePicker) listen(posePicker, 'change', () => {
+      if (!ready || isPaused() || !posePicker.value) return;
+      const name = posePicker.value;
+      wake(performance.now()); moodFace = null; startAct(name, performance.now());
+      posePicker.value = '';
+    });
     const cleanup = () => {
       if (disposed) return;
       disposed = true; controller.abort(); cancelAnimationFrame(frameId);
       timers.forEach(clearTimeout); timers.clear(); intersection.disconnect(); resize.disconnect();
       Object.values(tex).forEach(t => gl.deleteTexture(t));
+      sprites?.cleanup();
       buffers.forEach(b => gl.deleteBuffer(b)); shaders.forEach(s => gl.deleteShader(s)); gl.deleteProgram(pr);
     };
     listen(canvas, 'webglcontextlost', event => {

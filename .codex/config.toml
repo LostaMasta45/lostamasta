@@ -1,0 +1,6 @@
+# Project-only Vercel connection. Authenticate as lostamasta.com@gmail.com.
+[mcp_servers.vercel]
+enabled = false
+
+[mcp_servers.vercel-lostamasta]
+url = "https://mcp.vercel.com"

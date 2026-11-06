@@ -38,6 +38,9 @@
 .baru-play-buttons { display: flex; gap: 6px; flex-wrap: wrap; }
 .baru-play-buttons button { display: inline-flex; align-items: center; justify-content: center; gap: 5px; border: 1px solid rgb(215 226 234 / 15%); border-radius: 30px; padding: 7px 13px; background: transparent; color: #9aa5af; font-size: 10px; transition: background-color 160ms ease, color 160ms ease; }
 .baru-play-buttons button:disabled { opacity: .4; cursor: default; }
+.baru-pose-picker { min-width: 0; max-width: 170px; border: 1px solid rgb(215 226 234 / 15%); border-radius: 30px; padding: 7px 13px; background: #15141a; color: #9aa5af; font: inherit; font-size: 10px; cursor: pointer; }
+.baru-pose-picker:disabled { opacity: .4; cursor: default; }
+.baru-pose-picker:focus-visible { outline: 2px solid #b6a0cf; outline-offset: 3px; }
 @media (hover: hover) and (pointer: fine) { .baru-play-buttons button:hover:not(:disabled) { background: #d7e2ea; color: #0c0c0c; } }
 @keyframes baru-flap { from { transform: rotate(-16deg); } to { transform: rotate(16deg); } }
 @media (min-width: 1600px) { .baru-wordmark { font-size: 13.2vw; } }

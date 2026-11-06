@@ -1,0 +1,276 @@
+{
+  "sourceDirectory": "Maskot_GIF_Bagian_07_dari_10",
+  "files": [
+    {
+      "key": "yawn",
+      "source": "01_menguap.gif",
+      "sha256": "e70c9a89bffafadd77710d60b8f1d5bf5838cc0b996ec594e041ddd414b591a9"
+    },
+    {
+      "key": "shifty",
+      "source": "02_lirik_kanan_kiri.gif",
+      "sha256": "063d368d2bf927837812053761fd768ace80f070fa9d53d619fc56c02a26418a"
+    },
+    {
+      "key": "gum",
+      "source": "03_permen_karet.gif",
+      "sha256": "d33a7d17d64b26dbddf57924160d0de021bec9b0fe0bfeb3d07320530695b947"
+    },
+    {
+      "key": "fly",
+      "source": "04_diganggu_lalat.gif",
+      "sha256": "2ad8435783cdf611f8885c1b62b99fac23c9dc3cdcdb0fc45a54a37f17a1afe2"
+    },
+    {
+      "key": "flirt",
+      "source": "05_kedip_manis.gif",
+      "sha256": "2a7621972e0660b8dff544e881d315ac77b297a591b48fc727638aa025691999"
+    },
+    {
+      "key": "roll",
+      "source": "06_memutar_mata.gif",
+      "sha256": "669198e7362020cb49ef0b8c73c1d3f14d1b8624182029d980aac3c698d05016"
+    },
+    {
+      "key": "sneeze",
+      "source": "07_bersin.gif",
+      "sha256": "13ebf7d93d134559ed9186ff3160a5dd7e715a5d3d4dae698b743b12e58fa9ef"
+    },
+    {
+      "key": "hijab",
+      "source": "08_merapikan_hijab.gif",
+      "sha256": "e958fba08bdb83a2192bd6b11e6d0ab9005f1468cdf2be8fc5eb21b6137a21d8"
+    },
+    {
+      "key": "tug",
+      "source": "09_pipi_dicubit.gif",
+      "sha256": "c2f6ca94b1c9b47a30f19d8bb8451f6e42d874b01bf2c03bd161b25f0a1180a1"
+    },
+    {
+      "key": "cross",
+      "source": "10_wajah_konyol.gif",
+      "sha256": "fd441a92cc18afc46c7aa243e61c397e67a53b5b810abdf742efee88be2c35ac"
+    },
+    {
+      "key": "whistle",
+      "source": "11_bersiul.gif",
+      "sha256": "d7ee89a1554336cd1a7b591dd3a55fe85a71abd5b26104365a88d8a0d3ba5a71"
+    },
+    {
+      "key": "doze",
+      "source": "12_ketiduran.gif",
+      "sha256": "9fe03c5487e41cf9343564f3784e712ae83e405612806ab3da25540c9a913d93"
+    },
+    {
+      "key": "cheeky",
+      "source": "13_jahil.gif",
+      "sha256": "44359d226e99369d767ee7cf4b26ffcbb544cfed416b9db4178facb702e81702"
+    },
+    {
+      "key": "wow",
+      "source": "14_takjub.gif",
+      "sha256": "4ee249c0142899f62c02a989a8eeb5adb10030d10e46e115536f14d61e245740"
+    },
+    {
+      "key": "sad",
+      "source": "15_sedih.gif",
+      "sha256": "603603a90fa4a4ad5d68d5c2f49c1e78f3379a9cd5c1aaa1c2b3825d8e1c67f9"
+    },
+    {
+      "key": "gaze:e",
+      "source": "gaze_01_kanan.gif",
+      "sha256": "95cee00f73b9f1025ebd7398ebfe68106edac64846daa5d6939f711eabbaffc5"
+    },
+    {
+      "key": "gaze:ene",
+      "source": "gaze_02_kanan_sedikit_atas.gif",
+      "sha256": "3381e896662b47480e33250cf41992fd510b127ac819775616a7bef8b5a5c977"
+    },
+    {
+      "key": "gaze:ne",
+      "source": "gaze_03_kanan_atas.gif",
+      "sha256": "37d5f1eb27e19db2afbbb4fe8478cee9b190b6b0161f0a7c52d20f6da00e99d8"
+    },
+    {
+      "key": "gaze:nne",
+      "source": "gaze_04_atas_sedikit_kanan.gif",
+      "sha256": "7f792b9409c4730fda15ac6b3fbb57037e83ee70e76660be23665010d00dab47"
+    },
+    {
+      "key": "gaze:n",
+      "source": "gaze_05_atas.gif",
+      "sha256": "17345a807b09e2e44dfee1988a0b9b46677bc44ea4ad562befdaa01226a330b9"
+    },
+    {
+      "key": "gaze:nnw",
+      "source": "gaze_06_atas_sedikit_kiri.gif",
+      "sha256": "aacfc069feca40d20093ad6ee3129cfb62f91a5d6fad49c6de3a21f676584b18"
+    },
+    {
+      "key": "gaze:nw",
+      "source": "gaze_07_kiri_atas.gif",
+      "sha256": "7f1306c04f9febfc316338e4cbbedd78cb9cb73668e017e6a887549c75f63702"
+    },
+    {
+      "key": "gaze:wnw",
+      "source": "gaze_08_kiri_sedikit_atas.gif",
+      "sha256": "bee72cf22ac852966e78f53dc65c97a18989a659f2924dd9ff8e7ee6e4e5a673"
+    },
+    {
+      "key": "gaze:w",
+      "source": "gaze_09_kiri.gif",
+      "sha256": "66161642371635756eb7adcf9e372f71e7babb0aba787896563790b4455dc4d3"
+    },
+    {
+      "key": "gaze:wsw",
+      "source": "gaze_10_kiri_sedikit_bawah.gif",
+      "sha256": "8348e52861b0d1a6af30aa1bdb82fe36c8c67f79b59f91665053c2e14cda7998"
+    },
+    {
+      "key": "gaze:sw",
+      "source": "gaze_11_kiri_bawah.gif",
+      "sha256": "ddfab7ab745cc1bac3bef74c287b89afc49fc6c57ca68b0a4f6d547d49c613e7"
+    },
+    {
+      "key": "gaze:ssw",
+      "source": "gaze_12_bawah_sedikit_kiri.gif",
+      "sha256": "a5debbd57e4abfe13358b106df09222874e37ad70b19b198ed05fb6aa9c405b0"
+    },
+    {
+      "key": "gaze:s",
+      "source": "gaze_13_bawah.gif",
+      "sha256": "d4f4cc38c10710a002681eedca97b63cc15a032dd842b80853aa65dea03427f6"
+    },
+    {
+      "key": "gaze:sse",
+      "source": "gaze_14_bawah_sedikit_kanan.gif",
+      "sha256": "b4773322224f2f71e1a4105705d23be02d8e06934151987af617487860ac2744"
+    },
+    {
+      "key": "gaze:se",
+      "source": "gaze_15_kanan_bawah.gif",
+      "sha256": "0119b4f44d3084077f470a28f4eb32c18d778dbdd91217ed1677998c2f1cf923"
+    },
+    {
+      "key": "gaze:ese",
+      "source": "gaze_16_kanan_sedikit_bawah.gif",
+      "sha256": "6a61fd4fd73dec363ba947314fc14e3fab881eae9c3ace852acc06bb6278b751"
+    },
+    {
+      "key": "rest",
+      "source": "gaze_17_netral.gif",
+      "sha256": "370e02cd5aae8e7da28ce8ca1dabd933be5e7b3850c8785604a30687d6a10cfb"
+    },
+    {
+      "key": "half",
+      "source": "gaze_18_mata_setengah.gif",
+      "sha256": "417ae98c5deba1ca5a07b8e26c23f316869c1117030f421b5b4f2408eab6a198"
+    },
+    {
+      "key": "closed",
+      "source": "gaze_19_mata_tertutup.gif",
+      "sha256": "9ca156078647c2fe63e45f4891a4bd10e303bc5fb501791b821a6152a28f6913"
+    },
+    {
+      "key": "kiss",
+      "source": "reaksi_cium.gif",
+      "sha256": "973b9cc5834191add2943738ef3ecfde5fabcf4887d74f2c7aa141b4d788b722"
+    },
+    {
+      "key": "raised",
+      "source": "reaksi_dapat_ide.gif",
+      "sha256": "69b3c01350610e64f86b40c36e492ba70b942778748f8f30e2cb261cf10b7766"
+    },
+    {
+      "key": "deadpan",
+      "source": "reaksi_datar.gif",
+      "sha256": "2c94fbf05632a9e51626e40ab0cac6cc4b7f7e77915ecaa6d4cbc60d6897388e"
+    },
+    {
+      "key": "winkr",
+      "source": "reaksi_kedip_kanan.gif",
+      "sha256": "f79363b7573d0a3ecdf2aa765122241cdd7859be18699c337795ae0cf6084f4c"
+    },
+    {
+      "key": "winkl",
+      "source": "reaksi_kedip_kiri.gif",
+      "sha256": "f0832aff0eef9fb6d972cf70cee705747c3a353a7924d73c35037c9829df31a9"
+    },
+    {
+      "key": "ouch",
+      "source": "reaksi_kesakitan_ringan.gif",
+      "sha256": "6e3d4b3b08c725af208e94f04899d1dd7989d010421d9d98dc636519ea0c5119"
+    },
+    {
+      "key": "smug",
+      "source": "reaksi_lirik_curiga.gif",
+      "sha256": "d0574699ac4cf3efe4a5b1097546c2b477e0a9b8242e8730babe8afe09027367"
+    },
+    {
+      "key": "angry",
+      "source": "reaksi_marah.gif",
+      "sha256": "973b9cc5834191add2943738ef3ecfde5fabcf4887d74f2c7aa141b4d788b722"
+    },
+    {
+      "key": "sick",
+      "source": "reaksi_mual.gif",
+      "sha256": "2010177d8eaa5db747a249f8104ffdb9c7efd2b4eec69a3b782490f860770410"
+    },
+    {
+      "key": "puff",
+      "source": "reaksi_pipi_gembung.gif",
+      "sha256": "973b9cc5834191add2943738ef3ecfde5fabcf4887d74f2c7aa141b4d788b722"
+    },
+    {
+      "key": "dizzy",
+      "source": "reaksi_pusing.gif",
+      "sha256": "7412b24dbd140aa8a1ca660701b25c2b5d45faffd339562465ee623814ebf42c"
+    },
+    {
+      "key": "grin",
+      "source": "reaksi_senyum_hangat.gif",
+      "sha256": "74912366b7f2c347d265ae470b843570757d009085e0ced9b19251bec3d3f4c3"
+    },
+    {
+      "key": "scared",
+      "source": "reaksi_takut.gif",
+      "sha256": "69b3c01350610e64f86b40c36e492ba70b942778748f8f30e2cb261cf10b7766"
+    },
+    {
+      "key": "shock",
+      "source": "reaksi_terkejut.gif",
+      "sha256": "69b3c01350610e64f86b40c36e492ba70b942778748f8f30e2cb261cf10b7766"
+    },
+    {
+      "key": "laugh",
+      "source": "reaksi_tertawa.gif",
+      "sha256": "c90b0f343e27857c751fcaabf91c11fda93d298c278adc3245596428e9571760"
+    },
+    {
+      "key": "wind",
+      "source": "reaksi_tertiup_angin.gif",
+      "sha256": "f6ba9405ca6bf55c0a95e88e713c055f1e2d541cbe7d380eb353889603460c44"
+    },
+    {
+      "key": "scrunch",
+      "source": "reaksi_wajah_mengerut.gif",
+      "sha256": "54f25613beaf9b89b3e6668f14ee4a6b84a115b3548c518c1169f81485c23c1c"
+    }
+  ],
+  "duplicateGroups": [
+    [
+      "reaksi_cium.gif",
+      "reaksi_marah.gif",
+      "reaksi_pipi_gembung.gif"
+    ],
+    [
+      "reaksi_dapat_ide.gif",
+      "reaksi_takut.gif",
+      "reaksi_terkejut.gif"
+    ]
+  ],
+  "sourceBytes": 97300149,
+  "outputBytes": 16118678,
+  "repairsManifest": "repaired-gifs/repairs.json",
+  "repairedGifBytes": 7333892
+}

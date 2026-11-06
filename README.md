@@ -42,7 +42,11 @@ Komposisi halaman dan animasi berada di `losta_masta_spesialis_pembuatan_website
 
 ## Publikasi
 
-Identitas Sites tersimpan di `.openai/hosting.json`. Build produksi menggunakan `npm run build` dan menghasilkan direktori `dist/`. Gunakan kembali identitas Sites yang sama untuk pembaruan berikutnya.
+Target deploy Vercel adalah proyek `lostamasta` pada akun `lostamasta.com@gmail.com`, dengan URL produksi `https://lostamasta.vercel.app`. Konfigurasi MCP khusus workspace berada di `.codex/config.toml`, preferensi akun di `AGENTS.md`, dan tautan proyek lokal di `.vercel/project.json` (diabaikan Git). Kredensial OAuth dikelola Codex dan tidak disimpan di repository.
+
+Build produksi menggunakan `npm run build` dan menghasilkan direktori `dist/`. `vercel.json` mengatur Vite serta fallback SPA untuk route seperti `/baru`, `/portofolio`, dan `/konsep/<id>`. Environment Vercel produksi `VITE_SITE_URL` menunjuk URL publik agar canonical dan preview media memakai origin yang benar.
+
+Identitas hosting Sites sebelumnya tetap tersimpan di `.openai/hosting.json`.
 
 ## Portofolio dan kontak
 
@@ -81,3 +85,28 @@ Arahan saat ini: pengembangan lokal dahulu. Jangan memublikasikan perubahan beri
 - `komponen` dan `motion` dibaca pada tahap perencanaan; implementasi juga mengikuti resource `animate`, `responsive`, dan `vercel-react-best-practices`. Referensi React Bits/Aceternity/Magic UI hanya inspirasi; tidak ada source komponen mereka yang disalin.
 - Belum dipublikasikan. Build, typecheck, lint, browser, dan tes rutin tidak dijalankan, mengikuti preferensi pengguna. Tampilan lintas perangkat belum diverifikasi secara visual.
 - Pemeriksaan terarah untuk memperbaiki alur kontak lama: URL WhatsApp umum, konteks proyek Aura, dan konteks layanan E-Commerce & Katalog semuanya mengarah ke nomor resmi dan mempertahankan teks pesan setelah encoding. Tidak mengirim pesan sungguhan. Gambar preview berbagi berhasil dibuat secara lokal.
+
+
+## Maskot GIF berhijab di /portofolio ? 6 November 2026
+
+- Mengintegrasikan 51 GIF dari `Maskot_GIF_Bagian_07_dari_10/`: 15 aksi, 19 state pandang/kelopak mata, dan 17 reaksi. `/baru` tetap memakai set eksperimennya.
+- `scripts/import-hijab-gifs.py` mengimpor GIF menjadi poster WebP transparan 640 px dan atlas berhalaman dengan frame 384 px. Durasi asli setiap frame disimpan dalam `src/hijab-portrait-manifest.json`; asal dan hash file tercatat di `public/media/hijab-portrait/source.json`. GIF asli tidak diubah.
+- `src/portrait-sprites.js` memuat halaman animasi sesuai kebutuhan dengan cache GPU maksimal enam halaman. `living-portrait.js` tetap memakai mesh elastis dan interaksi pointer, sekaligus memutar frame animasi yang dipasok.
+- Kontrol rambut diganti menjadi **Rapikan hijab**. Tombol Bersin, Permen karet, Reset, Jeda, serta pemilih seluruh 51 pose tersedia di hero portofolio. Pergantian pose membatalkan permintaan aksi sebelumnya. Mode jeda menampilkan poster statis.
+- Aset asli memiliki dua kelompok identik: `reaksi_cium`, `reaksi_marah`, `reaksi_pipi_gembung`; dan `reaksi_dapat_ide`, `reaksi_takut`, `reaksi_terkejut`. Semua nama tetap dipetakan, tetapi file keluaran yang identik dibagi bersama. Total 47 animasi unik; tidak membuat ulang ekspresi.
+- Ukuran sumber 97.300.149 byte; keluaran sekitar 12,9 MB. Impor dijalankan dan sampel frame aset diperiksa lewat lembar kontak lokal. Tidak menjalankan browser, build, typecheck, lint, atau tes otomatis. Perubahan lokal, belum deploy.
+
+
+Perbaikan lanjutan mata (6 November 2026): frame GIF lirikan asli ternyata mengandung bayangan pupil lama. Mematikan crossfade saja belum menghilangkan artefak sumber. Hero kini memakai PNG/WebP asli yang bersih dari `coba` untuk lirikan kiri?depan?kanan, termasuk saat pemilih gaze dan idle memainkan gerakan mata. Arah vertikal/diagonal sementara memakai sumber horizontal terdekat; belum ada 16 gambar gaze bersih yang berbeda. Frame GIF aksi lainnya tetap digunakan. Crop mata yang benar-benar dirender di browser telah diperiksa pada kedua arah dan bersih, dengan WebGL error 0. Tidak menjalankan build/full suite atau deploy.
+
+
+Arahan terbaru pengguna (6 November 2026): PNG pengganti untuk /portofolio telah dilepas. Semua 51 pose kembali bersumber hanya dari folder `Maskot_GIF_Bagian_07_dari_10/`, termasuk 16 arah lirikan. Renderer memakai poster/atlas WebP hasil impor GIF tersebut; /baru tetap memakai set eksperimennya. Catatan solusi tiga arah PNG di atas bersifat historis dan sudah tidak berlaku. Pemeriksaan hanya source/manifest; tanpa browser, build, tes, atau deploy.
+
+
+## GIF lirikan bersih ? 6 November 2026
+
+Solusi aktif menggunakan GIF hasil perbaikan, tanpa PNG pengganti lama. Seluruh 16 arah lirikan tetap tersedia. Frame mata dibersihkan memakai built-in ImageGen dari frame GIF pengguna, kemudian hanya area matanya dikomposit ke frame GIF asli dengan FFmpeg dan disusun ulang tanpa dissolve.
+
+Sebanyak 23 GIF hasil perbaikan berada di `public/media/hijab-portrait/repaired-gifs/`, mencakup gaze/kelopak, lirikan kanan-kiri, putaran mata, kedip kiri/kanan, dan lirik curiga. GIF asli pengguna dipertahankan. Prompt serta provenance ada di `repairs.json`. Jalankan `scripts/build-repaired-gaze-gifs.py` untuk menyusun ulang dari perantara lokal di `artifacts/mascot-import/gaze-repair/`; importer utama otomatis mendahulukan GIF hasil perbaikan yang tersedia. Poster dan atlas WebP tetap merupakan hasil impor GIF.
+
+Mata pada semua 18 GIF gaze/kelopak hasil encode sudah diperiksa sebagai crop. Render browser untuk kiri, kanan, atas dan bawah diperiksa dari area mata WebGL dan menunjukkan satu pupil per mata, tanpa blending (fade 1), error WebGL 0. Seluruh referensi manifest tersedia. Tidak menjalankan build/full suite atau deploy. Catatan pembatasan tiga arah dan penggunaan PNG lama sebelumnya sudah tidak berlaku.

@@ -3,9 +3,15 @@ import { ArrowDown, ArrowUpRight, Hand, Pause, Play, RotateCcw } from 'lucide-re
 import App, { useMotionPreference } from '../losta_masta_spesialis_pembuatan_website';
 import { whatsappUrl } from './portfolio-data';
 import { initLivingPortrait } from './living-portrait';
+import HIJAB_PORTRAIT from './hijab-portrait-manifest.json';
 import './baru.css';
 
-const REST = '/media/living-portrait/20261031_040619_2f6f349e-a4a7-40db-8e9b-03b6acd8b99a.webp';
+const REST = '/media/hijab-portrait/rest.webp';
+const GIF_GROUPS = [
+  { label: 'Aksi', matches: (source: string) => /^\d/.test(source) },
+  { label: 'Arah pandang', matches: (source: string) => source.startsWith('gaze_') },
+  { label: 'Reaksi', matches: (source: string) => source.startsWith('reaksi_') },
+];
 const CUSTOM_PORTRAIT = {
   rest: '/media/living-portrait/coba/rest.webp',
   left: '/media/living-portrait/coba/left.webp',
@@ -16,7 +22,6 @@ const CUSTOM_PORTRAIT = {
   raised: '/media/living-portrait/coba/04_dapat_ide.webp',
   smug: '/media/living-portrait/coba/05_melirik_curiga.webp',
 };
-
 export function LivingHero({ portfolio = false }: { portfolio?: boolean }) {
   const root = useRef<HTMLElement>(null);
   const { reduced, toggle } = useMotionPreference();
@@ -28,7 +33,9 @@ export function LivingHero({ portfolio = false }: { portfolio?: boolean }) {
     const previous = document.title;
     document.title = portfolio ? 'Portofolio — Losta Masta / Web Design & Development' : 'Losta Masta — Living Portrait';
     const cleanup = root.current
-      ? initLivingPortrait(root.current, { isPaused: () => paused.current, images: portfolio ? undefined : CUSTOM_PORTRAIT })
+      ? initLivingPortrait(root.current, { isPaused: () => paused.current,
+          images: portfolio ? undefined : CUSTOM_PORTRAIT,
+          portrait: portfolio ? HIJAB_PORTRAIT : undefined })
       : undefined;
     return () => { cleanup?.(); document.title = previous; };
   }, [portfolio]);
@@ -55,7 +62,7 @@ export function LivingHero({ portfolio = false }: { portfolio?: boolean }) {
       <div className="baru-portrait-wrap" id="magnetWrap">
         <div className="baru-portrait-inner">
           <img id="faceFallback" src={portfolio ? REST : CUSTOM_PORTRAIT.rest} width={portfolio ? 640 : 960} height={portfolio ? 640 : 960} loading="eager" fetchPriority="high"
-            alt={portfolio ? 'Karakter kartun 3D interaktif. Gerakkan kursor, sentuh wajah, atau tarik pipinya.' : 'Karakter perempuan berhijab marun dan berkacamata. Gerakkan kursor untuk mengarahkan pandangannya atau tarik pipinya.'}
+            alt={portfolio ? 'Maskot perempuan berhijab marun dan berkacamata. Gerakkan kursor, sentuh wajah, atau tarik pipinya.' : 'Karakter perempuan berhijab marun dan berkacamata. Gerakkan kursor untuk mengarahkan pandangannya atau tarik pipinya.'}
             draggable={false} onError={() => setImageFailed(true)} />
           <canvas id="faceGl" aria-hidden="true" />
           <div id="faceProps" aria-hidden="true">
@@ -86,8 +93,15 @@ export function LivingHero({ portfolio = false }: { portfolio?: boolean }) {
       <div className="baru-play-buttons">
         {portfolio ? <>
         <button type="button" data-portrait-action="sneeze" disabled={reduced}>Bersin</button>
-        <button type="button" data-portrait-action="hair" disabled={reduced}>Warna rambut</button>
+        <button type="button" data-portrait-action="hijab" disabled={reduced}>Rapikan hijab</button>
         <button type="button" data-portrait-action="gum" disabled={reduced}>Permen karet</button>
+        <select className="baru-pose-picker" data-portrait-picker="" defaultValue="" disabled={reduced} aria-label="Coba pose maskot lainnya">
+          <option value="" disabled>Coba pose lain</option>
+          {GIF_GROUPS.map(group => <optgroup key={group.label} label={group.label}>
+            {Object.entries(HIJAB_PORTRAIT.animations).filter(([, clip]) => group.matches(clip.source)).map(([key, clip]) =>
+              <option key={key} value={key}>{clip.source.replace(/^(?:gaze_|reaksi_)?\d*_?/, '').replace(/\.gif$/, '').replace(/_/g, ' ')}</option>)}
+          </optgroup>)}
+        </select>
         </> : <>
         <button type="button" data-portrait-action="look-left" disabled={reduced}>Lihat kiri</button>
         <button type="button" data-portrait-action="look-center" disabled={reduced}>Lihat depan</button>

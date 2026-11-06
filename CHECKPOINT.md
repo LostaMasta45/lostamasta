@@ -1,5 +1,34 @@
 # Losta Masta — checkpoint 3 November 2026
 
+## Skill global homepage terpasang — 5 November 2026
+
+- Pengguna meminta pembuatan skill homepage berdasarkan kombinasi riset sebelumnya, untuk hasil modern, clean, profesional; kemudian meminta daftar ulang sumber seperti MotionSites dan Aura.build.
+- Skill `$homepage` dibuat di `C:/Users/user/.codex/skills/homepage/`: `SKILL.md`, metadata `agents/openai.yaml`, serta referensi `sources.md`, `page-types.md`, `composition.md`, dan `komponen-handoff.md`. Dapat dipakai lintas proyek; tidak membawa palet, route, akun hosting, atau identitas Lostamasta ke aturan umum.
+- Kombinasi: Landbook + Lapa Ninja + One Page Love untuk arah dan narasi, Unsection untuk section, sumber motion bila relevan, dan `$komponen` untuk discovery/integrasi React. Panduan memuat keputusan hierarki, tipografi, spacing, media, CTA, mobile, serta batas klaim dan lisensi. Katalog 32 sumber/delapan contoh diadaptasi dari riset tersimpan dengan label bukti historis; tidak browsing ulang atau mengklaim verifikasi live baru.
+- Skill yang dibaca sesi ini: skill-creator + referensi openai_yaml; komponen. Rancangan, riset, instruksi proyek, dan checkpoint dibaca terarah. Validator resmi `quick_validate.py` dijalankan untuk paket baru dan menghasilkan `Skill is valid!`.
+- Tidak mengubah aplikasi/homepage, memasang dependency aplikasi, menjalankan tes/build/lint/typecheck/browser, atau deploy. Tidak membuat commit/push. Pembuatan skill selesai.
+
+## Riset homepage universal + komponen — 5 November 2026
+
+- Pengguna meminta analisis/referensi website seperti MotionSites untuk homepage seluruh proyek, sebagai bahan skill `homepage` yang digabungkan dengan `$komponen`. Skill `komponen`, katalog sumber 32, dan visual-workflow sudah dibaca; source/token homepage lokal serta manifest/lockfile diperiksa secara terarah.
+- Riset disimpan di `references/homepage-research.md`: katalog 32 sumber homepage, 8 contoh homepage/template, resep 12 jenis website, peta section, perbandingan Motion Primitives Text Effect vs Magic UI Blur Fade vs React Bits Split Text, dan penerapan konseptual untuk Lostamasta.
+- Rancangan workflow/kontrak ke `$komponen` disimpan di `references/homepage-skill-brief.md`. Belum dibuat/dipasang skill global; pertanyaan opsional tentang cakupan dan pemasangan telah diajukan. Default hasil saat ini: riset universal dengan contoh Lostamasta dan rancangan siap dikemas jika diminta.
+- Temuan sumber: `motionsites.ai` berbeda domain dari `motionsite.ai`; Godly mengarah ke Recent; Animate UI accordion berpindah rute dan LICENSE saat dibaca MIT + Commons Clause; React Bits juga MIT + Commons Clause. Tailark OSS, Magic UI Free, Motion Primitives, dan shadcn/ui lisensi MIT dibaca. Aceternity license belum berhasil diverifikasi; Shadcnblocks Free diatur Terms, paid terpisah.
+- Halaman/dokumentasi/source/lisensi dibaca; tidak mengamati demo dalam browser atau menjalankan komponen. Tidak memasang dependency, mengubah homepage/aplikasi, menjalankan tes/build/lint/typecheck, atau deploy. Akses yang gagal/terbatas dicatat dalam dokumen. Untuk mengemas skill gunakan skill-creator; jangan menyalin prompt/source premium ke paket skill.
+
+## Vercel: akun khusus proyek — 5 November 2026
+
+- Pengguna meminta deploy ke proyek Vercel `lostamasta` yang sudah ada, dengan akun `lostamasta.com@gmail.com`, serta tautan autentikasi dan penyimpanan konfigurasi khusus proyek.
+- MCP global `vercel` terkonfirmasi memakai `rayokurir@gmail.com`, tim `team_YcadECp2YxBcSIVaeIqUeA0U` (`rayo-kurirs-projects`); pencarian `lostamasta` kosong. Jangan deploy ke identitas ini.
+- `.codex/config.toml` menonaktifkan koneksi global untuk proyek ini dan mendefinisikan `vercel-lostamasta` di `https://mcp.vercel.com`. Akun tujuan dicatat di `AGENTS.md`; kredensial OAuth tidak disimpan di repository.
+- `vercel.json` menyiapkan build Vite ke `dist` dan rewrite SPA agar route langsung seperti `/portofolio` dapat dibuka. `.vercel/` diabaikan Git.
+- Login OAuth `vercel-lostamasta` sudah berhasil. MCP mengonfirmasi email `lostamasta.com@gmail.com`, user `J5BpdwfDphnRNblVhp9Y1hCQ`, team `team_KOwRSK3KkY6AgdWG7Io2AzM7`, dan proyek `prj_I4qXlfWjmlfJkeZFQPuMDiK2ERdA` bernama `lostamasta`. Identitas juga disimpan di `.vercel/project.json` (diabaikan Git).
+- Sesi utama masih memegang MCP global lama. Bridge lokal `.sites-runtime/vercel-mcp.py` memakai protokol app-server Codex `mcpServer/tool/call` pada koneksi proyek; tidak menjalankan model/subagen dan tidak mengekspor kredensial. Respons nonrahasia disimpan lokal di `.sites-runtime/vercel-*.json`.
+- Persetujuan `authorize_team_access` telah diselesaikan pengguna; retry `get_project` berhasil pada tim yang benar. Proyek memakai Vite, Node `26.x`, belum memiliki koneksi Git/deployment, dan domain terverifikasi `lostamasta.vercel.app`. Pengaturan proteksi deployment bawaan dipertahankan.
+- Environment produksi `VITE_SITE_URL=https://lostamasta.vercel.app` berhasil disimpan lewat MCP untuk canonical dan preview media. Source lokal 173 file sudah dikirim lewat MCP; 103 file besar berhasil diupload dengan SHA1, sisanya disertakan inline. Manifest argumen tersimpan di `.sites-runtime/vercel-deploy-args.json` (lokal, diabaikan Git).
+- Deploy produksi selesai melalui MCP: `dpl_9SVNMdT66htEJahCEkTtTnzz82gn`, status **READY**, tanpa error deployment/alias. URL produksi terpasang `https://lostamasta.vercel.app`; URL versi `https://lostamasta-gnka78uhx-lostamastacom-3111s-projects.vercel.app`. Alias kedua `lostamasta-lostamastacom-3111s-projects.vercel.app` juga terpasang. Hasil diverifikasi dengan MCP `get_deployment`; build dijalankan Vercel. Session bridge terakhir: `19669`.
+- Skill `openai-docs` dan dokumentasi resmi MCP sudah dibaca. Tidak menjalankan tes, build lokal, typecheck, lint, browser QA, atau HTTP smoke test. Tidak melakukan commit/push Git; konfigurasi akun/MCP dan deployment tetap tersimpan di workspace. Hosting Sites lama tidak dideploy.
+
 ## Struktur root dan GitHub — 4 November 2026
 
 - Seluruh isi `losta-masta-site/`, termasuk riwayat Git dan file tersembunyi, dipindahkan ke root workspace. Folder lama dihapus setelah kosong.
@@ -71,3 +100,51 @@
 - Chrome DevTools mengukur dua reload ignore-cache desktop 1078x814: karakter siap 734/500 ms, LCP 640/464 ms. Kartu portofolio 107/67/61 ms. Request eksternal 0, error JS 0. Enam video berhasil diputar dengan emulasi no-preference, lalu preferensi dikembalikan ke auto. Detail di `losta-masta-site/PERFORMANCE.md`.
 - Tidak menjalankan build/lint/typecheck/full suite baru. Perubahan performa hanya lokal, belum dipush atau dipublikasikan ke Sites.
 - Skill tambahan sudah dibaca: speed (measurement, media-interactions), ffmpeg (encoding-and-tuning, glossary), animation-performance.
+
+
+## Integrasi 51 GIF maskot berhijab /portofolio ? 6 November 2026
+
+- Permintaan: eksekusi GIF lokal dari `Maskot_GIF_Bagian_07_dari_10/` untuk karakter `/portofolio`; aksi rambut diganti merapikan hijab.
+- Identitas MCP `vercel-lostamasta` dicocokkan sebelum perubahan: akun lostamasta.com@gmail.com, user J5BpdwfDphnRNblVhp9Y1hCQ, team team_KOwRSK3KkY6AgdWG7Io2AzM7, project prj_I4qXlfWjmlfJkeZFQPuMDiK2ERdA. Tidak deploy atau mengubah konfigurasi Vercel.
+- Impor selesai: 51 GIF 768 px (15 aksi + 19 gaze + 17 reaksi), 47 konten unik; sumber 97.300.149 byte menjadi sekitar 12,9 MB WebP. Asli transparan; dua grup duplikat didokumentasikan di README/source.json. Tidak membuat ulang aset yang berbeda nama tetapi identik.
+- File penting: `scripts/import-hijab-gifs.py`, `src/hijab-portrait-manifest.json`, `src/portrait-sprites.js`, `src/living-portrait.js` dan `.d.ts`, `src/baru-page.tsx`, `src/baru.css`, `index.html`, `public/media/hijab-portrait/`. Sumber GIF dan lembar kontak lokal ditambahkan ke .gitignore tanpa menghapus file asli.
+- Frame atlas 384 px, poster 640 px, timing GIF dipertahankan. Loader per halaman dengan enam texture GPU; mesh elastis, gaze 16 arah (NW kini memakai aset tersendiri), klik/hover/tarik, idle 30?45 detik, reset dan pause terhubung. Pemilih pose menampilkan seluruh 51 klip. `/baru` memakai CUSTOM_PORTRAIT seperti sebelumnya.
+- Skill dibaca: ffmpeg + referensi asset-generation/glossary dan vercel-react-best-practices. Inspeksi: inventaris GIF, metadata/timing/transparansi/hash, dan contact sheet sampel aset. Tidak menjalankan browser/build/typecheck/lint/tes rutin sesuai preferensi pengguna. Belum diverifikasi di browser; belum commit/push/deploy.
+
+
+## Perbaikan bayangan ganda saat melirik ? 6 November 2026
+
+- Keluhan pengguna: mata maskot /portofolio tampak berbayang/dobel saat melirik.
+- Penyebab dikonfirmasi lewat Chrome DevTools pada tab lokal: uniform fade renderer berada di antara 0 dan 1 pada 6 dari 20 frame saat arah pandang berpindah, sehingga gambar mata lama dan baru bercampur.
+- `src/living-portrait.js`: untuk konfigurasi portrait hijab, `show()` mengganti seluruh gambar sekaligus dan renderer memakai fade=1; durasi nol ditangani eksplisit agar tidak ada pembagian nol. Jalur gambar /baru tetap memakai pengaturan sebelumnya.
+- Pemeriksaan terkecil setelah HMR: 20 frame dengan perpindahan kiri/kanan, state left/right terbaca, blendedFrames=0, fade selalu 1, gl.getError()=0. Pemeriksaan dilakukan melalui evaluate_script, tanpa screenshot/snapshot, build, full suite, atau deploy. Tidak mengklaim inspeksi visual halaman.
+
+
+## Koreksi sumber mata ganda /portofolio ? 6 November 2026
+
+- Pengguna melaporkan masih dobel setelah crossfade dimatikan. Inspeksi crop frame 0 dan 7 dari GIF sumber gaze_01_kanan menunjukkan pupil/bayangan lama sudah tertanam di gambar asli; pemeriksaan uniform sebelumnya hanya memastikan blending renderer mati, belum memastikan mutu aset.
+- PNG asli `coba/rest.png`, `left.png`, `right.png` diperiksa dalam crop area mata dan bersih. Versi WebP transparan yang sudah ada di `public/media/living-portrait/coba/` dipakai melalui `portrait.gazeImages` di `src/baru-page.tsx`; preload/fallback netral mengarah ke aset bersih yang sama.
+- `src/living-portrait.js` dan `.d.ts`: cursor, pemilih gaze, idle shifty dan roll memakai gambar mata bersih; pemilih gaze tidak lagi memainkan frame GIF bermasalah. Batasan yang disampaikan: lirikan bersih saat ini horizontal kiri?depan?kanan. Arah vertikal/diagonal belum memiliki aset bersih tersendiri; state tersebut dipetakan ke sumber horizontal terdekat. GIF aksi/reaksi lain tetap digunakan.
+- Verifikasi Chrome DevTools pada tab 82 (tab 27 sebelumnya sudah ditutup): portrait ready, fallback tersembunyi, hanya satu canvas terlihat, sumber rest/left/right bersih sudah termuat. Capture terarah melalui readPixels tepat setelah drawElements untuk area mata kiri dan kanan benar-benar diinspeksi sebagai gambar; kedua arah menunjukkan satu pupil per mata tanpa bayangan lama, gl.getError()=0. Tanpa screenshot halaman penuh, snapshot, build, full suite atau deploy.
+- Imagegen SKILL.md dibaca saat mempertimbangkan perbaikan aset, tetapi tidak dijalankan: PNG bersih yang dibutuhkan sudah tersedia. Tidak menghasilkan, mengedit, atau menimpa gambar sumber pengguna.
+
+
+## Arahan terbaru: gunakan hanya sumber folder GIF untuk /portofolio ? 6 November 2026
+
+- Pengguna meminta menghilangkan PNG pengganti dan memakai hanya aset folder terbaru `Maskot_GIF_Bagian_07_dari_10/` yang seluruhnya GIF.
+- Override `portrait.gazeImages` dihapus dari `src/baru-page.tsx`, `living-portrait.js`, dan deklarasi tipe. Lirikan cursor kembali ke 16 arah dari set GIF; pemilih gaze, shifty, dan roll kembali memainkan klip GIF yang diimpor. Fallback dan preload /portofolio kembali ke `/media/hijab-portrait/rest.webp`, hasil impor GIF netral. Tidak menghapus file PNG asli atau aset route /baru.
+- Seluruh 51 pose /portofolio bersumber dari GIF folder terbaru; format WebP poster/atlas hasil impor tetap digunakan renderer. Pemeriksaan source/manifest: semua nama sumber berakhiran .gif, seluruh stills berada di /media/hijab-portrait/, tidak ada lagi override gazeImages.
+- Arahan ini menggantikan solusi PNG dan pembatasan tiga arah pada catatan sebelumnya. Tidak menjalankan browser/build/tes atau deploy untuk perubahan ini.
+
+
+## Perbaikan GIF sumber mata ganda selesai ? 6 November 2026
+
+- Arahan aktif: /portofolio tetap memakai set GIF dari `Maskot_GIF_Bagian_07_dari_10/`; jangan mengembalikan override PNG lama atau membatasi tiga arah.
+- Pengguna tetap melihat mata ganda setelah kembali ke GIF. Artefak berada pada frame GIF sumber (pupil netral masih berbayang di belakang pupil yang bergeser), sehingga perubahan crossfade renderer saja tidak cukup.
+- Built-in ImageGen dipakai untuk memperbaiki 18 held frame yang diekstrak dari GIF pengguna: seluruh 16 arah, setengah tertutup, dan tertutup. Tidak memakai PNG set `coba`. File keluaran ImageGen disalin ke workspace di `artifacts/mascot-import/gaze-repair/generated-*.png` sebagai perantara pengolahan; prompt lengkap tersimpan di `public/media/hijab-portrait/repaired-gifs/repairs.json`.
+- `scripts/build-repaired-gaze-gifs.py`: FFmpeg menormalkan frame, mengambil hanya area kedua mata (275,296,79,43 dan 416,296,82), feather alpha 4 px, lalu menempelkan ke frame netral GIF asli. Wajah/hijab di luar area mata berasal dari GIF asli. Membuat GIF tanpa dissolve agar dua posisi iris tidak tercampur.
+- 23 GIF diperbaiki di `public/media/hijab-portrait/repaired-gifs/`: 18 gaze/kelopak, 02_lirik_kanan_kiri, 06_memutar_mata, kedua reaksi kedip, dan reaksi_lirik_curiga. GIF pengguna asli tidak ditimpa. Total GIF hasil perbaikan 7.333.892 byte. Manifest tetap 51 klip; 16 arah gaze dipertahankan.
+- Poster/atlas digenerasi ulang hanya untuk 23 GIF tersebut, dengan nama hash baru agar cache aset lama tidak dipakai. `scripts/import-hijab-gifs.py` kini otomatis mendahulukan GIF hasil perbaikan bila tersedia. Metadata mencatat repairSource dan originalSha256.
+- Pemeriksaan aktual: perintah FFmpeg/Python selesai; inspeksi contact sheet mata dari seluruh 18 GIF hasil encode (masing-masing 3 frame), satu iris/pupil per mata terbuka, serta inspeksi crop compositing. Semua referensi manifest tersedia dan seluruh source berakhiran .gif.
+- Chrome DevTools MCP pada tab lokal 147: awalnya viewport 0x0 membuat frame diam dan capture timeout. Emulasi 1060x814 ditetapkan; evaluate menunggu RAF sempat timeout 120 detik, kemudian select_page bringToFront mengaktifkan render. Setelah itu keempat poster hash baru terdeteksi sudah termuat; portrait ready, fallback hidden. Capture WebGL terarah tepat setelah drawElements untuk kiri, kanan, atas, bawah benar-benar diperiksa secara visual: satu pupil per mata, fade=1, gl.getError()=0. Pengaturan viewport dikembalikan setelah pemeriksaan.
+- Skill dibaca/digunakan: imagegen built-in untuk perbaikan bitmap + ffmpeg untuk pengolahan animasi. Tidak menjalankan build, typecheck, lint, full suite atau deploy. Pemeriksaan dibatasi pada error mata yang dilaporkan.
