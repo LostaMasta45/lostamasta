@@ -2,6 +2,7 @@ export function initLivingPortrait(
   root: HTMLElement,
   options?: {
     isPaused?: () => boolean;
+    contactSelector?: string;
     images?: { rest: string; left: string; right: string } & Partial<Record<'winkl' | 'puff' | 'grin' | 'raised' | 'smug', string>>;
     portrait?: {
       stills: Record<string, string>;

@@ -9,7 +9,7 @@
       // Preload only the local character used by the requested page.
       {
         const pathname = location.pathname.replace(/\/+$/, '');
-        const portraitPreview = ['/baru', '/portofolio'].includes(pathname);
+        const portraitPreview = ['/baru', '/portofolio', '/homepage2', '/homepage3'].includes(pathname);
         const heroPreload = document.createElement('link');
         heroPreload.rel = 'preload';
         heroPreload.as = 'image';

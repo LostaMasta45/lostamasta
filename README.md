@@ -110,3 +110,18 @@ Solusi aktif menggunakan GIF hasil perbaikan, tanpa PNG pengganti lama. Seluruh 
 Sebanyak 23 GIF hasil perbaikan berada di `public/media/hijab-portrait/repaired-gifs/`, mencakup gaze/kelopak, lirikan kanan-kiri, putaran mata, kedip kiri/kanan, dan lirik curiga. GIF asli pengguna dipertahankan. Prompt serta provenance ada di `repairs.json`. Jalankan `scripts/build-repaired-gaze-gifs.py` untuk menyusun ulang dari perantara lokal di `artifacts/mascot-import/gaze-repair/`; importer utama otomatis mendahulukan GIF hasil perbaikan yang tersedia. Poster dan atlas WebP tetap merupakan hasil impor GIF.
 
 Mata pada semua 18 GIF gaze/kelopak hasil encode sudah diperiksa sebagai crop. Render browser untuk kiri, kanan, atas dan bawah diperiksa dari area mata WebGL dan menunjukkan satu pupil per mata, tanpa blending (fade 1), error WebGL 0. Seluruh referensi manifest tersedia. Tidak menjalankan build/full suite atau deploy. Catatan pembatasan tiga arah dan penggunaan PNG lama sebelumnya sudah tidak berlaku.
+
+
+## Alternatif homepage /homepage2
+
+Versi lokal di `http://127.0.0.1:5173/homepage2` menggabungkan maskot GIF interaktif, tiga preview karya, layanan, profil personal dengan maskot hijab, rak buku enam konsep, proses, FAQ, serta footer dengan ilustrasi editor. Source halaman dan layout: `src/homepage2-page.tsx` dan `src/homepage2.css`. Komponen /portofolio digunakan kembali melalui prop opsional; homepage utama tetap memakai susunan App default.
+
+Layout desktop dan mobile disiapkan lewat CSS, dengan pesan jasa/CTA sebelum maskot pada mobile. Tidak ada dependency tambahan. Pemeriksaan saat implementasi terbatas pada source dan listener server lokal; belum menjalankan browser/build/tes atau memublikasikan route baru ini.
+
+
+## Homepage3: versi dengan penambahan fitur
+
+`http://127.0.0.1:5173/homepage3` memakai homepage utama tanpa mengganti hero, style, section, atau footer aslinya. Rak buku interaktif disisipkan setelah karya pilihan; ilustrasi editor dan wordmark besar ditambahkan ke footer asli. Dua slot opsional App (`afterProjects`, `contactExtra`) menghubungkan tambahan tersebut ke modal/kontrol animasi yang sama. CSS baru hanya berlaku pada blok hp3; stylesheet homepage utama tidak berubah. Source: `src/homepage3-page.tsx` dan `src/homepage3.css`. Inspeksi source dilakukan; belum menjalankan browser/build/tes atau deploy.
+
+
+Pembaruan homepage3: gambar karakter hero kini memakai `GifMascot` dari set GIF /portofolio, termasuk lirikan yang sudah diperbaiki dan interaksi tarik/tap/idle. Layout hero asli dipertahankan lewat slot gambar `heroPortrait`; tombol Jeda animasi yang sama mengatur maskot. Komponen ada di `src/gif-mascot.tsx` dan `.css`. Homepage utama tanpa slot masih memakai karakter sebelumnya. Pemeriksaan terbatas pada source; belum browser/build/tes atau deploy.

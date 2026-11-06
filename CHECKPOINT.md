@@ -148,3 +148,35 @@
 - Pemeriksaan aktual: perintah FFmpeg/Python selesai; inspeksi contact sheet mata dari seluruh 18 GIF hasil encode (masing-masing 3 frame), satu iris/pupil per mata terbuka, serta inspeksi crop compositing. Semua referensi manifest tersedia dan seluruh source berakhiran .gif.
 - Chrome DevTools MCP pada tab lokal 147: awalnya viewport 0x0 membuat frame diam dan capture timeout. Emulasi 1060x814 ditetapkan; evaluate menunggu RAF sempat timeout 120 detik, kemudian select_page bringToFront mengaktifkan render. Setelah itu keempat poster hash baru terdeteksi sudah termuat; portrait ready, fallback hidden. Capture WebGL terarah tepat setelah drawElements untuk kiri, kanan, atas, bawah benar-benar diperiksa secara visual: satu pupil per mata, fade=1, gl.getError()=0. Pengaturan viewport dikembalikan setelah pemeriksaan.
 - Skill dibaca/digunakan: imagegen built-in untuk perbaikan bitmap + ffmpeg untuk pengolahan animasi. Tidak menjalankan build, typecheck, lint, full suite atau deploy. Pemeriksaan dibatasi pada error mata yang dilaporkan.
+
+
+## Homepage alternatif /homepage2 ? 6 November 2026
+
+- Pengguna meminta menggabungkan lima bagian /portofolio ke homepage alternatif di /homepage2: maskot GIF, galeri preview, rak buku interaktif, About Me personal, dan footer editor.
+- Implementasi lokal: `src/homepage2-page.tsx` menyusun LivingHero(portfolio+homepage), HomepageGallery(limit=3, link #collection), ServicesSection, AboutMe dengan poster dari GIF hijab, BookGallery, ProcessSection, PortfolioFAQ, dan PortfolioFooter. Layout/copy khusus di `src/homepage2.css`; route lazy di `src/main.tsx` dan preload karakter di index.html.
+- `LivingHero` mendapat prop homepage opsional: hero dua kolom dengan penawaran website bisnis, CTA WhatsApp, maskot GIF yang sudah diperbaiki, dan kontrol senyum/kedip/rapikan hijab. Mobile menempatkan pesan/CTA sebelum maskot. Mode portfolio dan /baru tetap memakai default sebelumnya.
+- `HomepageGallery` mendapat limit opsional, collectionHref, dan tautan koleksi lengkap saat dibatasi. `AboutMe` mendapat portraitSrc opsional. BookGallery, PortfolioFAQ dan PortfolioFooter diekspor untuk reuse; tidak menyalin engine atau menambah dependency. Homepage utama tetap menggunakan App default.
+- Skill yang digunakan: homepage + composition/komponen-handoff, komponen, responsive; React best practices sudah dibaca sebelumnya dalam sesi. Tidak menelusuri katalog eksternal karena komponen ditentukan dari proyek sendiri.
+- Identitas MCP sebelum perubahan cocok dengan akun lostamasta.com@gmail.com, user J5BpdwfDphnRNblVhp9Y1hCQ, project prj_I4qXlfWjmlfJkeZFQPuMDiK2ERdA, team team_KOwRSK3KkY6AgdWG7Io2AzM7.
+- Pemeriksaan aktual hanya inspeksi source/diff dan listener server lokal 127.0.0.1:5173 aktif. Tidak menjalankan browser, screenshot, build, typecheck, lint atau tes karena tidak ada error yang ditemukan/dilaporkan untuk halaman baru. Belum diverifikasi visual, belum commit/push/deploy. Link lokal: http://127.0.0.1:5173/homepage2.
+
+
+## Homepage3: homepage utama dengan fitur tambahan ? 6 November 2026
+
+- Koreksi pengguna: /homepage3 harus menggabungkan fitur /portofolio dengan homepage utama, mempertahankan style, hero, susunan dan isi homepage asli. Jangan menjadikannya desain ulang seperti /homepage2.
+- `src/homepage3-page.tsx` memakai App default langsung, tanpa override hero/content/footer. Menambahkan BookGallery setelah ProjectsSection melalui slot afterProjects; menambahkan EditorScene dan wordmark besar dalam footer asli melalui contactExtra. Seluruh bagian asli tetap dirender dengan urutan semula, termasuk ContactSection dan footer-bottom.
+- `losta_masta_spesialis_pembuatan_website.tsx`: hanya menambahkan dua slot opsional dan extra pada ContactSection; default tanpa slot menghasilkan DOM lama. HeroSection, MarqueeSection, ProjectsSection, AboutSection, ServicesSection, ProcessSection dan FAQSection tidak diubah. `src/styles.css` tidak berubah.
+- `src/homepage3.css` hanya menarget blok tambahan hp3, menyesuaikan heading rak buku dengan tipografi metal/uppercase homepage. Class portfolio-page ditempatkan di wrapper fitur tambahan saja, sehingga aturan portfolio untuk services/process tidak mengubah section homepage asli. Editor/rak buku memakai engine dan reduced motion yang sudah ada, tanpa dependency baru.
+- `EditorScene` diekspor dari src/portofolio-page.tsx; route lazy /homepage3 ditambahkan ke src/main.tsx. Preload tetap aset hero homepage asli. /homepage2 tetap tersedia sebagai eksperimen sebelumnya.
+- Identitas akun/proyek Vercel kembali dicocokkan lewat MCP sebelum perubahan: lostamasta.com@gmail.com, prj_I4qXlfWjmlfJkeZFQPuMDiK2ERdA pada team_KOwRSK3KkY6AgdWG7Io2AzM7. Tidak deploy.
+- Pemeriksaan aktual: inspeksi source/diff dan konfirmasi styles.css tidak berubah. Tidak menjalankan browser, screenshot, build, typecheck, lint, atau tes rutin. Belum diverifikasi visual, belum commit/push/deploy. Link lokal: http://127.0.0.1:5173/homepage3.
+
+
+## Karakter GIF /portofolio diterapkan ke hero /homepage3 ? 6 November 2026
+
+- Pengguna menyetujui komposisi homepage3 lalu meminta karakter /portofolio diterapkan di sana. Scope berubah khusus gambar/karakter hero; susunan dan gaya homepage3 yang disetujui tetap dipertahankan.
+- `src/gif-mascot.tsx` dan `.css` memisahkan maskot dari layout LivingHero. Memakai manifest GIF yang sama, termasuk 16 arah yang sudah diperbaiki, fisika tarik pipi, tap wajah/hijab, idle acts, serta pause dari useMotionPreference. Tidak memakai set PNG lama.
+- App/HeroSection mendapat slot `heroPortrait`/`portrait` opsional. Homepage3 memasukkan GifMascot ke posisi karakter lama; navigasi, wordmark, copy, CTA, lebar/posisi hero-portrait, rak buku dan footer tambahan tetap dipakai. Default homepage utama tanpa slot tetap menggunakan gambar/Magnet sebelumnya.
+- Frame menampung animasi persegi dalam rasio gambar hero asli 800:866, sehingga wajah tidak diregangkan. Badge Web Design & Development dipertahankan. Kontrol Jeda animasi yang sudah ada mengatur canvas/fallback melalui ref; tidak menambah bar kontrol baru.
+- Engine living-portrait mendapat opsi contactSelector dengan default lama .contact-btn; maskot standalone memakai selector tautan wa.me agar hover CTA homepage mengaktifkan ekspresi. Preload /homepage3 kini memakai poster GIF netral.
+- Identitas Vercel/MCP dicocokkan sebelum perubahan pada akun/proyek/team Lostamasta yang benar. Pemeriksaan hanya metadata ukuran gambar, source/diff dan jalur integrasi. Tidak menjalankan browser/build/typecheck/lint/tes atau deploy. Link lokal tetap http://127.0.0.1:5173/homepage3.

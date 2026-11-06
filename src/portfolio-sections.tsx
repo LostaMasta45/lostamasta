@@ -8,11 +8,12 @@ import './portfolio-sections.css';
 
 type ExploreProps = { onExplore: (project: ProjectItem) => void };
 
-export function HomepageGallery({ onExplore }: ExploreProps) {
+export function HomepageGallery({ onExplore, limit, collectionHref = '#playground' }: ExploreProps & { limit?: number; collectionHref?: string }) {
+  const works = limit === undefined ? WORKS : WORKS.slice(0, limit);
   return <section className="pf-homepages" id="projects" aria-labelledby="homepage-title">
-    <div className="pf-chapter"><span>01 / SELECTED WEB DESIGN</span><a href="#playground">Ke galeri interaktif <ArrowDown size={14} aria-hidden="true" /></a></div>
-    <div className="pf-homepages-heading"><div><p className="pf-kicker">Portofolio website</p><h2 id="homepage-title">Bukan cuma ide.<br /><em>Begini tampilannya.</em></h2></div><div><p>Enam dunia, enam karakter.<br />Lihat homepagenya. Gulir detailnya.<br />Temukan arah yang cocok untuk Anda.</p><span><Mouse size={14} aria-hidden="true" />Gulir di dalam preview</span></div></div>
-    <div className="pf-homepage-grid">{WORKS.map((work, index) => <article className="pf-homepage-card" key={work.id}>
+    <div className="pf-chapter"><span>01 / SELECTED WEB DESIGN</span><a href={collectionHref}>Ke galeri interaktif <ArrowDown size={14} aria-hidden="true" /></a></div>
+    <div className="pf-homepages-heading"><div><p className="pf-kicker">Portofolio website</p><h2 id="homepage-title">Bukan cuma ide.<br /><em>Begini tampilannya.</em></h2></div><div><p>{limit === undefined ? 'Enam dunia, enam karakter.' : `${works.length} studi desain pilihan.`}<br />Lihat homepagenya. Gulir detailnya.<br />Temukan arah yang cocok untuk Anda.</p><span><Mouse size={14} aria-hidden="true" />Gulir di dalam preview</span></div></div>
+    <div className="pf-homepage-grid">{works.map((work, index) => <article className="pf-homepage-card" key={work.id}>
       <div className="pf-browser"><div className="pf-browser-bar"><span className="pf-browser-dots" aria-hidden="true"><i /><i /><i /></span><span>{work.name.toLowerCase()} / homepage</span><a href={work.demoUrl} target="_blank" rel="noopener noreferrer" aria-label={`Buka demo homepage ${work.name} di tab baru`}><ArrowUpRight size={17} aria-hidden="true" /></a></div>
         <div className="pf-homepage-scroll" tabIndex={0} role="region" aria-label={`Screenshot homepage ${work.name}, gulir untuk melihat halaman lengkap`}><img src={homepageImage(work.id)} alt={`Screenshot halaman lengkap ${work.name}, studi desain ${work.category}`} width="1425" height={homepageHeight(work.id)} loading="lazy" decoding="async" /></div>
         <div className="pf-browser-foot"><span><ScanLine size={12} aria-hidden="true" />FULL HOMEPAGE / DESIGN STUDY</span><span>Gulir untuk menjelajahi ↕</span></div>
@@ -21,13 +22,14 @@ export function HomepageGallery({ onExplore }: ExploreProps) {
       <p className="pf-homepage-description">{work.summary}</p>
     </article>)}</div>
     <p className="pf-work-note">Screenshot diambil dari demo homepage yang dibuat untuk eksplorasi ini. Seluruh karya berstatus studi desain.</p>
+    {limit !== undefined && <div className="hp2-gallery-action"><p>Masih banyak karakter lain untuk dijelajahi.</p><a className="button-outline" href="/portofolio#projects">Lihat semua portofolio <ArrowUpRight size={16} aria-hidden="true" /></a></div>}
   </section>;
 }
 
-export function AboutMe() {
+export function AboutMe({ portraitSrc = '/media/living-portrait/20261031_040619_2f6f349e-a4a7-40db-8e9b-03b6acd8b99a.webp' }: { portraitSrc?: string } = {}) {
   return <section className="pf-about-me" id="about" aria-labelledby="about-me-title">
     <div className="pf-chapter"><span>02 / THE PERSON BEHIND THE PIXELS</span><span>DESIGN × DEVELOPMENT</span></div>
-    <div className="pf-about-layout"><div className="pf-about-portrait"><div className="pf-portrait-top"><span><span className="pf-about-dot" />INDEPENDENT BY DESIGN</span><ArrowUpRight size={22} aria-hidden="true" /></div><span className="pf-portrait-word" aria-hidden="true">hello.</span><img src="/media/living-portrait/20261031_040619_2f6f349e-a4a7-40db-8e9b-03b6acd8b99a.webp" alt="Karakter khas Losta Masta, sebagai representasi kreatif studio" width="640" height="640" loading="lazy" decoding="async" /><div className="pf-portrait-bottom"><div>LOSTA MASTA<span>Web designer & developer</span></div><span><MapPin size={13} aria-hidden="true" />Jombang, Indonesia</span></div></div>
+    <div className="pf-about-layout"><div className="pf-about-portrait"><div className="pf-portrait-top"><span><span className="pf-about-dot" />INDEPENDENT BY DESIGN</span><ArrowUpRight size={22} aria-hidden="true" /></div><span className="pf-portrait-word" aria-hidden="true">hello.</span><img src={portraitSrc} alt="Karakter khas Losta Masta, sebagai representasi kreatif studio" width="640" height="640" loading="lazy" decoding="async" /><div className="pf-portrait-bottom"><div>LOSTA MASTA<span>Web designer & developer</span></div><span><MapPin size={13} aria-hidden="true" />Jombang, Indonesia</span></div></div>
       <div className="pf-about-copy"><p className="pf-kicker">About me / Tentang saya</p><h2 id="about-me-title">Di balik layar,<br /><em>ada saya.</em></h2><p className="pf-about-lead">Saya merancang tampilan.<br />Lalu membuatnya benar-benar bekerja.</p><p>Saya bekerja lewat Losta Masta, menghubungkan desain dan pengembangan dalam satu proses. Saya menyukai website yang punya karakter, mudah dipahami, dan nyaman dijelajahi.</p><p>Mulai dari memahami ide Anda, menyusun halaman, sampai merapikan detail interaksi. Tujuannya sederhana: memberi bisnis Anda tempat yang terasa tepat di dunia digital.</p><div className="pf-about-method"><span><b>01</b>Pahami dulu.</span><span><b>02</b>Rancang dengan arah.</span><span><b>03</b>Bangun dengan perhatian.</span></div><a className="pf-about-cta" href={whatsappUrl('berkenalan dan membahas ide website')} target="_blank" rel="noopener noreferrer">Mari kenalan <ArrowUpRight size={18} aria-hidden="true" /></a></div>
     </div>
     <div className="pf-about-signoff"><span><Code2 size={18} aria-hidden="true" />Dari ide pertama sampai detail terakhir.</span><span>DESIGNED WITH FEELING. BUILT WITH CARE.</span></div>

@@ -8,6 +8,10 @@ const Page = pathname.startsWith('/konsep/')
   ? lazy(() => import('./concept-demo'))
   : pathname === '/portofolio'
   ? lazy(() => import('./portofolio-page'))
+  : pathname === '/homepage2'
+  ? lazy(() => import('./homepage2-page'))
+  : pathname === '/homepage3'
+  ? lazy(() => import('./homepage3-page'))
   : pathname === '/baru' ? lazy(() => import('./baru-page')) : App;
 
 createRoot(document.getElementById('root')!).render(

@@ -1,0 +1,28 @@
+/* Additions only: the original homepage retains its own DOM, classes and CSS. */
+.hp3-addition { --pf-border: var(--line); --pf-accent: var(--magenta); background: transparent; }
+.hp3-collection .pf-collection-heading h2 { font-family: inherit; font-size: clamp(2.7rem, 8.6vw, 8.2rem); font-weight: 900; line-height: .98; letter-spacing: -.045em; text-transform: uppercase; color: #bbccd7; background: linear-gradient(180deg, #646973 0%, #bbccd7 100%); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.hp3-collection .pf-collection-heading h2 em { font: inherit; letter-spacing: inherit; color: inherit; }
+.hp3-collection .pf-section-line { color: var(--muted); }
+.hp3-collection .pf-collection-heading > p,
+.hp3-collection .pf-spotlight-story > p { color: var(--muted); }
+.hp3-collection .pf-spotlight-story h3 { color: var(--paper); }
+.hp3-footer-enhancement { max-width: 1200px; margin: 0 auto; padding-top: clamp(30px, 5vw, 65px); border-top: 1px solid var(--line); }
+.hp3-editor-heading { text-align: center; }
+.hp3-editor-heading h3 { margin-top: 18px; font-size: clamp(30px, 4.4vw, 64px); line-height: 1.05; font-weight: 800; letter-spacing: -.045em; text-transform: uppercase; }
+.hp3-editor-heading > p:last-child { max-width: 430px; margin: 20px auto 0; font-size: 14px; font-weight: 300; line-height: 1.8; color: var(--muted); }
+.hp3-editor-preview { max-width: 750px; margin: clamp(20px, 4vw, 50px) auto clamp(35px, 5vw, 70px); padding-inline: clamp(8px, 3vw, 35px); }
+.hp3-editor-preview .pf-editor-stage { min-height: 420px; }
+.hp3-footer-wordmark { padding-bottom: 25px; font-size: clamp(36px, 12.9vw, 180px); font-weight: 900; line-height: 1.05; letter-spacing: -.055em; text-align: center; white-space: nowrap; user-select: none; }
+
+@media (max-width: 850px) {
+  .hp3-collection .pf-collection-heading { align-items: flex-start; flex-direction: column; gap: 24px; }
+  .hp3-collection .pf-collection-heading h2 { font-size: clamp(44px, 9.5vw, 78px); }
+  .hp3-collection .pf-collection-heading > p { font-size: 13px; }
+}
+@media (max-width: 639px) {
+  .hp3-collection .pf-collection-heading h2 { font-size: clamp(42px, 10.6vw, 66px); }
+  .hp3-editor-heading > p:last-child { font-size: 12px; }
+  .hp3-editor-preview { padding-inline: 0; }
+  .hp3-editor-preview .pf-editor-stage { min-height: 310px; padding-inline: 12px; }
+  .hp3-footer-wordmark { font-size: 12.1vw; padding-bottom: 22px; }
+}

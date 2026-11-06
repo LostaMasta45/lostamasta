@@ -22,7 +22,7 @@ const CUSTOM_PORTRAIT = {
   raised: '/media/living-portrait/coba/04_dapat_ide.webp',
   smug: '/media/living-portrait/coba/05_melirik_curiga.webp',
 };
-export function LivingHero({ portfolio = false }: { portfolio?: boolean }) {
+export function LivingHero({ portfolio = false, homepage = false }: { portfolio?: boolean; homepage?: boolean }) {
   const root = useRef<HTMLElement>(null);
   const { reduced, toggle } = useMotionPreference();
   const paused = useRef(reduced);
@@ -31,19 +31,19 @@ export function LivingHero({ portfolio = false }: { portfolio?: boolean }) {
 
   useEffect(() => {
     const previous = document.title;
-    document.title = portfolio ? 'Portofolio — Losta Masta / Web Design & Development' : 'Losta Masta — Living Portrait';
+    document.title = homepage ? 'Losta Masta — Website Bisnis dengan Karakter' : portfolio ? 'Portofolio — Losta Masta / Web Design & Development' : 'Losta Masta — Living Portrait';
     const cleanup = root.current
       ? initLivingPortrait(root.current, { isPaused: () => paused.current,
           images: portfolio ? undefined : CUSTOM_PORTRAIT,
           portrait: portfolio ? HIJAB_PORTRAIT : undefined })
       : undefined;
     return () => { cleanup?.(); document.title = previous; };
-  }, [portfolio]);
+  }, [portfolio, homepage]);
 
-  return <header className={`baru-hero${portfolio ? ' pf-hero' : ''}`} id="top" ref={root}>
+  return <header className={`baru-hero${portfolio ? ' pf-hero' : ''}${homepage ? ' hp2-hero' : ''}`} id="top" ref={root}>
     <div className="baru-preview-bar">
       <span><span className="baru-status-dot" />{portfolio ? 'Independent digital studio' : 'Eksplorasi 01'} <span className="baru-preview-label">/ {portfolio ? 'Jombang, Indonesia' : 'Living portrait'}</span></span>
-      <a href="/">{portfolio ? 'Beranda' : 'Homepage saat ini'} <ArrowUpRight size={13} aria-hidden="true" /></a>
+      <a href={homepage ? '/portofolio' : '/'}>{homepage ? 'Lihat portofolio' : portfolio ? 'Beranda' : 'Homepage saat ini'} <ArrowUpRight size={13} aria-hidden="true" /></a>
     </div>
 
     <nav className="baru-nav" aria-label="Navigasi utama">
@@ -52,8 +52,11 @@ export function LivingHero({ portfolio = false }: { portfolio?: boolean }) {
     </nav>
 
     <div className="baru-title-wrap">
-      <p className="baru-eyebrow">Independent web design & development</p>
-      <h1 className="baru-wordmark">LOSTA MASTA</h1>
+      {homepage ? <>
+        <a className="hp2-brand" href="#top" aria-label="Losta Masta, kembali ke atas">LOSTA MASTA<span>WEB DESIGN & DEVELOPMENT</span></a>
+        <p className="baru-eyebrow">Dari Jombang, untuk bisnis Anda.</p>
+        <h1 className="hp2-headline">Website bisnis.<br /><em>Punya karakter.</em></h1>
+      </> : <><p className="baru-eyebrow">Independent web design & development</p><h1 className="baru-wordmark">LOSTA MASTA</h1></>}
     </div>
 
     <div className="baru-portrait-stage">
@@ -78,10 +81,10 @@ export function LivingHero({ portfolio = false }: { portfolio?: boolean }) {
     </div>
 
     <div className="baru-hero-bottom">
-      <div className="baru-intro"><p className="baru-eyebrow">Bukan sekadar tampil.</p><p>Website yang punya karakter.<br />Dan bikin orang betah.</p></div>
+      <div className="baru-intro"><p className="baru-eyebrow">{homepage ? 'Dari ide sampai siap digunakan.' : 'Bukan sekadar tampil.'}</p><p>{homepage ? 'Desain dan pengembangan dalam satu proses. Saya membantu bisnis Anda hadir lewat website yang jelas, berkarakter, dan nyaman digunakan.' : <>Website yang punya karakter.<br />Dan bikin orang betah.</>}</p></div>
       <a className="baru-explore" href="#projects">Jelajahi karya <ArrowDown size={15} aria-hidden="true" /></a>
       <div className="baru-actions">
-        <a className="button-primary contact-btn" href={whatsappUrl()} target="_blank" rel="noopener noreferrer"><span>Ceritakan ide Anda</span><ArrowUpRight size={18} aria-hidden="true" /></a>
+        <a className="button-primary contact-btn" href={whatsappUrl()} target="_blank" rel="noopener noreferrer"><span>{homepage ? 'Diskusikan website Anda' : 'Ceritakan ide Anda'}</span><ArrowUpRight size={18} aria-hidden="true" /></a>
         <button className="baru-motion-toggle" type="button" onClick={toggle} aria-pressed={!reduced}>
           {reduced ? <Play size={12} aria-hidden="true" /> : <Pause size={12} aria-hidden="true" />}{reduced ? 'Aktifkan interaksi' : 'Jeda interaksi'}
         </button>
@@ -89,9 +92,13 @@ export function LivingHero({ portfolio = false }: { portfolio?: boolean }) {
     </div>
 
     <div className="baru-play-strip" aria-label="Kontrol karakter">
-      <span className="baru-play-label"><span className="baru-status-dot" />A little personality.</span>
+      <span className="baru-play-label"><span className="baru-status-dot" />{homepage ? 'Sedikit karakter, sebelum kita kenalan.' : 'A little personality.'}</span>
       <div className="baru-play-buttons">
-        {portfolio ? <>
+        {homepage ? <>
+        <button type="button" data-portrait-action="grin" disabled={reduced}>Senyum</button>
+        <button type="button" data-portrait-action="winkl" disabled={reduced}>Kedip</button>
+        <button type="button" data-portrait-action="hijab" disabled={reduced}>Rapikan hijab</button>
+        </> : portfolio ? <>
         <button type="button" data-portrait-action="sneeze" disabled={reduced}>Bersin</button>
         <button type="button" data-portrait-action="hijab" disabled={reduced}>Rapikan hijab</button>
         <button type="button" data-portrait-action="gum" disabled={reduced}>Permen karet</button>

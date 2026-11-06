@@ -116,7 +116,7 @@ function Magnet({ children }: { children: ReactNode }) {
   return <div className="magnet" ref={ref}>{children}</div>;
 }
 
-function HeroSection() {
+function HeroSection({ portrait }: { portrait?: ReactNode } = {}) {
   const { reduced, toggle } = useContext(MotionPreferenceContext);
   return <header className="hero" id="top">
     <div className="hero-top">
@@ -127,13 +127,13 @@ function HeroSection() {
       <h1 className="hero-wordmark metal-text">LOSTA MASTA</h1>
     </div>
     <div className="hero-portrait">
-      <Magnet>
+      {portrait ?? <Magnet>
         <div className="hero-badge"><span aria-hidden="true" />Web Design & Development</div>
         <AutoplayMotion className="hero-float">
           <LocalImage src={HERO_IMAGE} alt="Karakter visual Losta Masta" loading="eager" fetchPriority="high"
             sizes="(min-width: 1024px) 500px, (min-width: 768px) 420px, (min-width: 640px) 340px, 220px" />
         </AutoplayMotion>
-      </Magnet>
+      </Magnet>}
     </div>
     <div className="hero-bottom">
       <div className="hero-intro"><p className="eyebrow">Desain berkarakter. Interaksi terarah.</p>
@@ -297,12 +297,13 @@ function FAQSection() {
   </section>;
 }
 
-function ContactSection() {
+function ContactSection({ extra }: { extra?: ReactNode } = {}) {
   return <footer className="contact-section page-padding" id="contact">
     <FadeIn className="contact-content"><p className="eyebrow">Let’s make something worth exploring</p><h2 className="metal-text">Website berikutnya<br />bisa jadi milik Anda.</h2>
       <p>Ceritakan bisnis dan kebutuhan Anda.<br />Kita mulai dari percakapan singkat.</p><ContactLink><MessageCircle size={17} aria-hidden="true" />Diskusi via WhatsApp</ContactLink>
       <a className="contact-number" href={whatsappUrl()} target="_blank" rel="noopener noreferrer">{CONTACT.display} <ArrowUpRight size={14} aria-hidden="true" /></a>
     </FadeIn>
+    {extra}
     <div className="footer-bottom"><a href="#top" className="footer-brand">LOSTA MASTA<span>Web Design & Development</span></a><span>© {new Date().getFullYear()} Losta Masta</span><a className="text-link" href="#top">Kembali ke atas <ArrowUpRight size={15} aria-hidden="true" /></a></div>
   </footer>;
 }
@@ -370,10 +371,13 @@ function ProjectModal({ project, onClose }: { project: ProjectItem; onClose: () 
   </dialog>;
 }
 
-export function App({ hero, content, footer }: {
+export function App({ hero, heroPortrait, content, footer, afterProjects, contactExtra }: {
   hero?: ReactNode;
+  heroPortrait?: ReactNode;
   content?: (onSelect: (project: ProjectItem) => void) => ReactNode;
   footer?: ReactNode;
+  afterProjects?: (onSelect: (project: ProjectItem) => void) => ReactNode;
+  contactExtra?: ReactNode;
 } = {}) {
   const [activeProject, setActiveProject] = useState<ProjectItem | null>(null);
   const compact = useMediaQuery('(max-width: 639px)');
@@ -393,9 +397,9 @@ export function App({ hero, content, footer }: {
   };
   return <MotionPreferenceContext.Provider value={{ reduced, toggle }}>
     <a className="skip-link" href="#projects">Langsung ke karya pilihan</a>
-    {hero ?? <HeroSection />}
-    <main>{content ? content(setActiveProject) : <><MarqueeSection compact={compact} /><ProjectsSection compact={compact} onSelect={setActiveProject} /><AboutSection /><ServicesSection /><ProcessSection /><FAQSection /></>}</main>
-    {footer ?? <ContactSection />}
+    {hero ?? <HeroSection portrait={heroPortrait} />}
+    <main>{content ? content(setActiveProject) : <><MarqueeSection compact={compact} /><ProjectsSection compact={compact} onSelect={setActiveProject} />{afterProjects?.(setActiveProject)}<AboutSection /><ServicesSection /><ProcessSection /><FAQSection /></>}</main>
+    {footer ?? <ContactSection extra={contactExtra} />}
     {activeProject && <ProjectModal key={activeProject.id} project={activeProject} onClose={() => setActiveProject(null)} />}
   </MotionPreferenceContext.Provider>;
 }

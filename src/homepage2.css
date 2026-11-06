@@ -1,0 +1,88 @@
+.homepage2-page { --page-gutter: clamp(20px, 4.5vw, 80px); }
+.homepage2-page .hp2-hero { display: grid; grid-template-columns: minmax(0, 1.08fr) minmax(0, .92fr); grid-template-rows: auto auto 1fr auto auto; column-gap: clamp(24px, 4vw, 70px); min-height: max(800px, 100svh); background: radial-gradient(ellipse at 78% 50%, #45203b38, transparent 45%), #0c0c0c; }
+.hp2-hero .baru-preview-bar { grid-area: 1 / 1 / 2 / -1; }
+.hp2-hero .baru-nav { grid-area: 2 / 1 / 3 / -1; padding-block: 24px; font-size: 12px; }
+.hp2-hero .baru-title-wrap { grid-area: 3 / 1 / 4 / 2; align-self: end; text-align: left; padding-top: 50px; min-width: 0; }
+.hp2-brand { display: inline-flex; align-items: center; gap: 15px; margin-bottom: 34px; font-size: 19px; font-weight: 700; letter-spacing: -.035em; }
+.hp2-brand > span { max-width: 105px; padding-left: 15px; border-left: 1px solid var(--pf-border); font-size: 8px; font-weight: 400; letter-spacing: .09em; line-height: 1.55; color: #a99daf; }
+.hp2-headline { margin-top: 17px; color: #f0eaf3; font-size: clamp(48px, 5.6vw, 91px); font-weight: 500; line-height: 1.04; letter-spacing: -.065em; }
+.hp2-headline > em { color: #c9afdd; font-family: Georgia, 'Times New Roman', serif; font-weight: 400; }
+.hp2-hero .baru-portrait-stage { grid-area: 3 / 2 / 5 / 3; min-width: 0; min-height: 440px; align-self: stretch; }
+.hp2-hero .baru-portrait-wrap { width: min(115%, 610px); top: 46%; }
+.hp2-hero .baru-portrait-glow { top: 30%; width: 115%; }
+.hp2-hero .baru-side-note { display: none; }
+.hp2-hero .baru-interaction-hint { bottom: 36px; font-size: 10px; }
+.hp2-hero .baru-hero-bottom { grid-area: 4 / 1 / 5 / 2; display: flex; flex-direction: column; align-items: flex-start; gap: 21px; padding-block: 23px 62px; min-width: 0; }
+.hp2-hero .baru-intro { order: 0; max-width: 470px; }
+.hp2-hero .baru-intro > .baru-eyebrow { display: none; }
+.hp2-hero .baru-intro > p:last-child { margin: 0; font-size: clamp(14px, 1.25vw, 18px); line-height: 1.85; color: #aaa1b0; }
+.hp2-hero .baru-actions { order: 1; flex-direction: row; flex-wrap: wrap; align-items: center; gap: 15px; margin-top: 4px; }
+.hp2-hero .baru-actions .button-primary { min-height: 50px; padding-inline: 24px; font-size: 10px; }
+.hp2-hero .baru-explore { order: 2; justify-content: flex-start; padding: 0; font-size: 9px; }
+.hp2-hero .baru-play-strip { grid-area: 5 / 1 / 6 / -1; padding-block: 17px; }
+.hp2-hero .baru-play-buttons button { min-height: 38px; }
+.homepage2-page .pf-homepages-heading { padding-top: clamp(40px, 5vw, 75px); }
+.homepage2-page .pf-homepage-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 30px; }
+.homepage2-page .pf-homepage-scroll { height: clamp(300px, 31vw, 450px); }
+.homepage2-page .pf-homepage-caption { align-items: start; gap: 12px; }
+.homepage2-page .pf-homepage-caption h3 { font-size: clamp(27px, 2.8vw, 42px); }
+.homepage2-page .pf-work-detail { gap: 7px; font-size: 10px; }
+.hp2-gallery-action { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 18px; margin-top: 28px; }
+.hp2-gallery-action > p { color: #a49baa; font-size: 12px; line-height: 1.7; }
+.homepage2-page .section-heading { text-align: left; max-width: none; }
+.homepage2-page .section-heading h2 { font-size: clamp(44px, 6.2vw, 88px); font-weight: 500; line-height: 1.05; text-transform: none; letter-spacing: -.055em; }
+.homepage2-page .section-description { margin-inline: 0; }
+.homepage2-page .pf-about-layout { grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); gap: clamp(35px, 7vw, 110px); }
+.homepage2-page .pf-about-portrait { max-width: 440px; }
+.homepage2-page .pf-about-portrait > img { top: 12%; left: 0; width: 100%; transform: none; }
+.homepage2-page .pf-collection { padding-top: 35px; }
+.homepage2-page .pf-collection-heading h2, .homepage2-page .pf-faq h2, .homepage2-page .pf-footer h2 { font-size: clamp(48px, 6.7vw, 96px); }
+.homepage2-page .pf-faq { background: radial-gradient(ellipse at 80% 85%, #3c26432a, transparent 55%), #0c0c0c; }
+.homepage2-page .pf-footer { background: radial-gradient(ellipse at 75% 30%, #3020383d, transparent 55%), #0c0c0c; }
+
+@media (min-width: 1650px) {
+  .hp2-hero .baru-title-wrap { padding-top: 70px; }
+  .hp2-hero .baru-hero-bottom { padding-bottom: 85px; }
+}
+@media (max-width: 1050px) {
+  .homepage2-page .hp2-hero { min-height: max(760px, 100svh); column-gap: 22px; }
+  .hp2-headline { font-size: clamp(43px, 5.7vw, 62px); }
+  .hp2-hero .baru-portrait-wrap { width: min(125%, 520px); }
+  .hp2-hero .baru-actions { align-items: flex-start; flex-direction: column; gap: 12px; }
+  .homepage2-page .pf-homepage-grid { gap: 22px; }
+  .homepage2-page .pf-browser-bar { gap: 6px; padding-inline: 10px 5px; }
+  .homepage2-page .pf-browser-dots { width: auto; gap: 3px; }
+  .homepage2-page .pf-browser-foot { padding-inline: 10px; font-size: 7px; }
+  .homepage2-page .pf-browser-foot > span:last-child { display: none; }
+  .homepage2-page .pf-work-detail > span { max-width: 40px; }
+}
+@media (max-width: 760px) {
+  .homepage2-page .hp2-hero { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto auto auto auto auto auto; min-height: auto; }
+  .hp2-hero .baru-preview-bar { font-size: 8px; gap: 8px; }
+  .hp2-hero .baru-nav { padding-block: 21px; font-size: 11px; }
+  .hp2-hero .baru-title-wrap { grid-area: 3 / 1 / 4 / 2; padding-top: 25px; }
+  .hp2-brand { margin-bottom: 27px; font-size: 18px; }
+  .hp2-headline { font-size: clamp(43px, 9.7vw, 70px); }
+  .hp2-hero .baru-hero-bottom { grid-area: 4 / 1 / 5 / 2; padding-block: 22px 15px; gap: 19px; text-align: left; }
+  .hp2-hero .baru-intro > p:last-child { font-size: 14px; line-height: 1.8; }
+  .hp2-hero .baru-actions { flex-direction: row; align-items: center; gap: 14px; }
+  .hp2-hero .baru-actions .button-primary { padding-inline: 19px; font-size: 9px; }
+  .hp2-hero .baru-portrait-stage { grid-area: 5 / 1 / 6 / 2; min-height: clamp(305px, 64vw, 410px); }
+  .hp2-hero .baru-portrait-wrap { width: min(100%, 450px); top: 46%; }
+  .hp2-hero .baru-interaction-hint { bottom: 12px; font-size: 9px; }
+  .hp2-hero .baru-play-strip { grid-area: 6 / 1 / 7 / 2; justify-content: space-between; }
+  .hp2-hero .baru-play-label { width: auto; font-size: 9px; }
+  .homepage2-page .pf-homepage-grid { grid-template-columns: minmax(0, 1fr); gap: 40px; }
+  .homepage2-page .pf-homepage-scroll { height: clamp(320px, 85vw, 510px); }
+  .homepage2-page .pf-homepage-caption h3 { font-size: 34px; }
+  .homepage2-page .pf-work-detail > span { max-width: none; }
+  .homepage2-page .pf-about-layout { grid-template-columns: minmax(0, 1fr); gap: 35px; }
+  .homepage2-page .pf-about-portrait { width: 100%; margin-inline: auto; }
+  .hp2-gallery-action { align-items: flex-start; flex-direction: column; }
+}
+@media (max-width: 420px) {
+  .hp2-hero .baru-preview-label { display: none; }
+  .hp2-hero .baru-play-strip { justify-content: center; }
+  .hp2-hero .baru-play-label { width: 100%; justify-content: center; }
+  .hp2-hero .baru-play-buttons { width: 100%; justify-content: center; }
+}

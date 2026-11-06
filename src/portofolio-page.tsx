@@ -69,7 +69,7 @@ function Book({ project, index, cursor, selected, onSelect, onExplore }: {
   </motion.div>;
 }
 
-function BookGallery({ onExplore }: { onExplore: (project: ProjectItem) => void }) {
+export function BookGallery({ onExplore }: { onExplore: (project: ProjectItem) => void }) {
   const root = useRef<HTMLElement>(null);
   const shelf = useRef<HTMLDivElement>(null);
   const interacting = useRef(false);
@@ -154,7 +154,7 @@ function Halftone({ container }: { container: RefObject<HTMLElement | null> }) {
   return <canvas ref={canvas} className="pf-halftone" aria-hidden="true" />;
 }
 
-function PortfolioFAQ() {
+export function PortfolioFAQ() {
   const [open, setOpen] = useState<number | null>(0);
   const { reduced } = useMotionPreference();
   return <section className="pf-faq" aria-labelledby="pf-faq-title" id="faq">
@@ -169,7 +169,7 @@ function PortfolioFAQ() {
   </section>;
 }
 
-function EditorScene() {
+export function EditorScene() {
   const root = useRef<HTMLDivElement>(null);
   const { reduced } = useMotionPreference();
   const x = useMotionValue(0), y = useMotionValue(0);
@@ -200,7 +200,7 @@ function EditorScene() {
   </div>;
 }
 
-function PortfolioFooter() {
+export function PortfolioFooter() {
   const { reduced, toggle } = useMotionPreference();
   return <footer className="pf-footer" id="contact">
     <div className="pf-section-line"><span>07 / YOUR NEXT CHAPTER</span><a href="#top">Kembali ke atas <ArrowUpRight size={13} aria-hidden="true" /></a></div>

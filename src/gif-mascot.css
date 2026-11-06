@@ -1,0 +1,8 @@
+.gif-mascot { width: 100%; }
+/* Reserve the original hero image's proportions, with a square animation
+   centered inside, so the existing hero placement and image ratio stay intact. */
+.gif-mascot-frame { display: grid; align-items: center; aspect-ratio: 800 / 866; }
+.gif-mascot-wrap { position: relative; width: 100%; aspect-ratio: 1; touch-action: pan-y; }
+.gif-mascot-wrap > img { display: block; width: 100%; height: auto; user-select: none; -webkit-user-drag: none; }
+.gif-mascot-wrap > canvas { position: absolute; top: -35%; left: -35%; width: 170%; height: 170%; pointer-events: none; }
+.gif-mascot-props { display: none; }

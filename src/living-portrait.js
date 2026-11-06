@@ -2,7 +2,7 @@
 // Scoped listeners, local images and lifecycle cleanup support the isolated /baru React route.
 import { createPortraitSprites } from './portrait-sprites';
 
-export function initLivingPortrait(root, { isPaused = () => false, images, portrait } = {}) {
+export function initLivingPortrait(root, { isPaused = () => false, images, portrait, contactSelector = '.contact-btn' } = {}) {
     const controller = new AbortController();
     let disposed = false, frameId = 0, lastPaused = null;
     const timers = new Set();
@@ -351,7 +351,7 @@ export function initLivingPortrait(root, { isPaused = () => false, images, portr
     listen(window, 'blur', () => { cancelPull(); lastX = lastY = null; });
     listen(window, 'keydown', () => { if (!visible || isPaused()) return; wake(performance.now()); endAct(); });
     listen(window, 'pointerleave', () => { zone = null; });
-    root.querySelectorAll('.contact-btn').forEach(b => {
+    root.querySelectorAll(contactSelector).forEach(b => {
       listen(b, 'pointerenter', () => { if (isPaused()) return; wake(performance.now()); endAct(); moodFace = images || portrait ? 'grin' : 'hearts'; moodUntil = performance.now() + 1e7; });
       listen(b, 'pointerleave', () => { if (isPaused()) return; moodFace = 'grin'; moodUntil = performance.now() + 700; });
     });
